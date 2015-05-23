@@ -44,5 +44,7 @@ group :development, :test do
 
   gem 'carrierwave'
   gem 'rmagick'
+
+  gem 'will_paginate'
 end
 

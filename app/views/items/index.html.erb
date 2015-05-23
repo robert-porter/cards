@@ -38,6 +38,9 @@
 </table>
 
 <br>
+<%= will_paginate @items %>
+
+<br>
 
 <% if @is_admin %>
     <%= link_to 'New Item', new_item_path %>

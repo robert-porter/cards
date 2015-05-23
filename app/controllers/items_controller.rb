@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :check_permissions, only: [:new, :create, :edit, :update, :destroy ]
 
   # GET /items
   def index
+    puts "IS_ADMIN " << @is_admin.to_s
 
     if(params[:q] == nil)
-      @items = Item.all
+      @items = Item.paginate(:page => params[:page])
     else
       words = params[:q].split(' ')
       index = 1
@@ -29,27 +31,29 @@ class ItemsController < ApplicationController
       end
 
       @items = items
+      @items = @items
     end
   end
 
   # GET /items/1
   def show
+    return if performed?
   end
 
   # GET /items/new
   def new
-    return if @failed 
+    return if performed?
     @item = Item.new
   end
 
   # GET /items/1/edit
   def edit
-    return if @failed
+    return if performed?
   end
 
   # POST /items
   def create
-    return if @failed
+    return if performed?
 
     @item = Item.new(item_params)
 
@@ -62,7 +66,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    return if @failed
+    return if performed?
 
     if @item.update(item_params)
       redirect_to @item, notice: 'Item was successfully updated.'
@@ -73,7 +77,7 @@ class ItemsController < ApplicationController
 
   # DELETE /items/1
   def destroy
-    return if @failed
+    return if performed?
 
     @item.destroy
 
@@ -83,24 +87,21 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @failed = false
-      if !@is_admin
-        render(:file => File.join(Rails.root, 'public/422.html'), :status => 422, :layout => false)
-        @failed = true
-      end
-
       begin
-        if !@failed
-          @item = Item.find(params[:id])
-        end
+        @item = Item.find(params[:id])
       rescue
         render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
-        @failed = true
+      end
+    end
+
+    def check_permissions
+      if !@is_admin
+          render(:file => File.join(Rails.root, 'public/422.html'), :status => 422, :layout => false)
       end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :image, :tags)
+      params.require(:item).permit(:name, :description, :image, :tags, :page)
     end
 end

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cards</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if !@is_admin %>
+    <%= form_tag("/sessions", method: "post") do %>
+    <label>Password: </label>
+    <input type = "password" name="password"> </input>
+    <input type="submit" value="Admin login"></input>
+    <% end %>
+<% else %>
+    You are currently logged in as an administrator.
+    <%= form_tag("/sessions/x", method: :delete) do %>
+    <input type="submit" value="Logout"></input>
+    <% end %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

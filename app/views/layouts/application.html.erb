@@ -21,6 +21,20 @@
     <% end %>
 <% end %>
 
+<button onclick="$('#search-box').fadeToggle()">Search</button>
+
+<div id='search-box' style="display:none;">
+    <%= form_tag("/items", method: "get") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+
+  <button onclick="$('#advanced-search').fadeToggle()">Advanced Search</button>
+  <div id='advanced-search' style="display:none;">Advanced shit</div>
+
+</div>
+
 <%= yield %>
 
 </body>

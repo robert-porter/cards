@@ -16,11 +16,25 @@
 </p>
 
 <p>
-  <strong>Tags:</strong>
-  <%= @item.tags %>
+  <strong>Manufacturer:</strong>
+  <%= @manufacturer.name %>
 </p>
 
-<% if @is_admin %>
-    <%= link_to 'Edit', edit_item_path(@item) %> |
-<% end %>
-<%= link_to 'Back', items_path %>
+<p>
+  <strong>Team:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @item.year.to_s %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <% @item.tags.each do  |tag| %>
+      <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</p>
+
+<%= link_to 'Item list', items_path %>

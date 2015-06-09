@@ -2,40 +2,18 @@
 
 <h1>Listing Items</h1>
 
-<%= form_tag("/items", method: "get") do %>
-    <%= label_tag(:q, "Search for:") %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
+
+
+<% @items.each do |item| %>
+
+    <% if @is_admin %>
+        <%= link_to image_tag(item.image_url(:thumbnail)) << item.name, edit_item_path(item) %><br>
+    <% else %>
+        <%= link_to image_tag(item.image_url(:thumbnail)) << item.name, item %><br>
+    <% end %>
+
 <% end %>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= image_tag(item.image_url(:thumbnail)) %></td>
-        <td><%= item.tags %></td>
-        <td><%= link_to 'Show', item %></td>
-        <% if @is_admin %>
-            <td><%= link_to 'Edit', edit_item_path(item) %></td>
-            <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 <%= will_paginate @items %>

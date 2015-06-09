@@ -1,36 +1,76 @@
-<%= form_for(@item, :html => {:multipart => true}) do |f| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-      <ul>
-      <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<!--initialize all of the tag values for the tag control-->
+<%= javascript_tag do %>
+    window.tagCollection = new TagCollection([
+    <% @all_tags.each do |tag| %>
+        <%=raw '"' << tag.name << '",' %>
+    <% end %>],
+    [
+    <% @item.tags.each do |tag| %>
+        <%=raw '"' << tag.name << '",' %>
+    <% end %>]);
+<% end %>
 
-  <div class="field">
+<%= form_for(@item, :html => {:multipart => true, :onsubmit => 'itemFormSubmit()'}) do |f| %>
+    <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+          <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
+    <%= f.text_field :name %><br><br>
+
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
+    <%= f.text_area :description %><br><br>
 
-  <div class="field">
     <%= f.label :image %><br>
-    <%= image_tag (@item.image_url(:medium)) %><br>
-    <%= f.file_field :image %>
-  </div>
+    <%= image_tag (@item.image_url(:medium)) %>
+    <%= f.file_field :image %><br><br>
 
-  <div class="field">
-    <%= f.label :tags %><br>
-    <%= f.text_field :tags %>
-  </div>
-  <div class="actions">
+    <%= f.label :manufacturer %>
+    <select name="item[manufacturer_id">
+      <% @manufacturers.each do |manufacturer| %>
+        <option value="<%=raw manufacturer.id %>" <%= "selected" if @item.manufacturer_id == manufacturer.id %>>
+          <%=raw manufacturer.name %>
+        </option>
+      <% end %>
+    </select><br><br>
+
+    <%= f.label :team %>
+    <select name="item[team_id]">
+      <% @teams.each do |team| %>
+          <option value="<%=raw team.id %>"<%= "selected" if @item.team_id == team.id %>>
+            <%=raw team.name %>
+          </option>
+      <% end %>
+    <select><br><br>
+
+    <%= f.label :year %>
+    <select name="item[year]">
+      <% (1900..2000).each do |year| %>
+          <option value="<%= year.to_s %>"<%= "selected" if @item.year == year %>>
+            <%= year.to_s %>
+          </option>
+      <% end %>
+    </select><br><br>
+
+    <!-- invisible to hold results of the tag control -->
+    <%= f.text_field :tag_list, :id => 'tag_list', :style => 'display:none' %>
+
+    <label>Tags:</label>
+    <div id='item-tags'></div>
+    <button type="button" onclick="$('#tags-not-on-item').fadeToggle()" >Add tags:</button>
+    <div id='tags-not-on-item'>
+    </div>
+    <br>
+    <br>
+
     <%= f.submit %>
-  </div>
 <% end %>

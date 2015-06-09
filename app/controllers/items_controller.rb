@@ -1,54 +1,61 @@
+
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_permissions, only: [:new, :create, :edit, :update, :destroy ]
 
+
+
   # GET /items
   def index
-    puts "IS_ADMIN " << @is_admin.to_s
-
     if(params[:q] == nil)
       @items = Item.paginate(:page => params[:page])
     else
-      words = params[:q].split(' ')
-      index = 1
-      items = Item.where('tags LIKE ?', "%#{words[0]}%")
-
-      #this is just a temp hack, need proper precedence
-      while index < words.size
-        if words[index] == 'and' && index + 1 < words.size
-          right = Item.where('tags LIKE ?', "%#{words[index + 1]}%")
-          items = items & right
-          index = index + 2
-        elsif words[index] == 'or' && index + 1 < words.size
-          right = Item.where('tags LIKE ?', "%#{words[index + 1]}%")
-          items = items | right
-          index = index + 2
-        else # no operator is the same as or
-          right = Item.where('tags LIKE ?', "%#{words[index]}%")
-          items = items | right
-          index = index + 1
-        end
-      end
-
-      @items = items
-      @items = @items
+      @items = parse_query_language(params[:q]).evaluate.paginate(:page => params[:page])
     end
+
   end
 
   # GET /items/1
   def show
     return if performed?
+
+    @team = Team.find(@item.team_id)
+    @manufacturer = Manufacturer.find(@item.manufacturer_id)
   end
 
   # GET /items/new
   def new
     return if performed?
+    @all_tags = ActsAsTaggableOn::Tag.all()
     @item = Item.new
   end
 
   # GET /items/1/edit
   def edit
     return if performed?
+
+    if @item.manufacturer_id != nil
+      @manufacturer = Manufacturer.find(@item.manufacturer_id)
+    else
+      @manufacturer = Manufacturer.where(:name => 'None').first
+      @item.manufacturer_id = @manufacturer.id
+    end
+    if @item.team_id != nil
+      @team = Team.find(@item.team_id)
+    else
+      @team = Team.where(:name => 'None').first
+      @item.team_id = @team.id
+    end
+
+    @teams = Team.all
+    @manufacturers = Manufacturer.all
+
+    @all_tags = ActsAsTaggableOn::Tag.all()
+    @tags_list_string = ''
+    @item.tags.each_with_index do |tag, i|
+      @tags_list_string << tag.name
+      @tags_list_string << ', ' if i < @item.tags.size - 1
+    end
   end
 
   # POST /items
@@ -102,6 +109,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :image, :tags, :page)
+      params.require(:item).permit(:name, :description, :image, :page, :tag_list, :team_id, :manufacturer_id, :year)
     end
 end

@@ -1,3 +1,73 @@
-// Place all the styles related to the Items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$item-width: 360px;
+
+#items  {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#items img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+
+
+#item {
+  height: 140px;
+}
+
+#item-with-admin {
+  margin: 10px;
+  padding: 10px;
+  overflow: auto;
+  border-style: solid;
+  background-color: #eeeeee;
+  height: 180px;
+  width: $item-width;
+  text-align: left;
+  display: inline-block;
+}
+
+.items-list-admin-link {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 40px;
+  width: 80px;
+  display: inline;
+}
+
+#pagination {
+  margin: 0;
+  padding: 0;
+  height: 80px;
+  line-height: 1.8em;
+  background-color: black;
+  color: white;
+  font-size: 32px;
+  bottom: 0;
+}
+
+#item-show-image {
+  float: left;
+  margin: 0 15px 0 0;
+}
+
+
+#item-show {
+  min-height: 400px;
+  padding: 30px;
+  border-style: solid;
+  background-color: #eeeeee;
+  overflow: auto;
+}
+
+#item-edit {
+  min-height: 250px;
+  padding: 30px;
+  border-style: solid;
+  background-color: #eeeeee;
+  overflow: auto;
+}
+

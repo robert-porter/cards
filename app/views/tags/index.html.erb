@@ -1,20 +1,19 @@
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<div id="content">
 
-<p id="notice"><%= notice %></p>
+  <h1>Listing tags</h1>
 
-<h1>Listing Tags</h1>
-
-<% @tags.each do  |tag| %>
-<%= link_to tag.name, tag_path(tag) %> <%= link_to 'Destroy', tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' } %> <br>
-<% end %>
-<br>
-
-<% if @is_admin %>
-    <h2>Create new tag</h2>
-    <%= form_tag("/tags", method: "post") do %>
-        <%= label_tag(:q, "Tag name:") %>
-        <%= text_field_tag(:tag_name) %>
-        <%= submit_tag("Create") %>
+  <ul id="admin-list">
+    <% @tags.each do  |tag| %>
+        <%= render tag %>
     <% end %>
-<% end %>
+  </ul>
+
+  <h2>Create new tag</h2>
+  <%= form_for @tag, remote: true do |f| %>
+      <%= f.label :name %><br>
+      <%= f.text_field(:name) %><br>
+      <%= f.label :synonyms %><br>
+      <%= f.text_area :synonyms %><br>
+      <%= f.submit %>
+  <% end %>
+</div>

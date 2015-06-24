@@ -6,34 +6,12 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body background="/images/background.jpg">
 
-<% if !@is_admin %>
-    <%= form_tag("/sessions", method: "post") do %>
-    <label>Password: </label>
-    <input type = "password" name="password"> </input>
-    <input type="submit" value="Admin login"></input>
-    <% end %>
-<% else %>
-    You are currently logged in as an administrator.
-    <%= form_tag("/sessions/x", method: :delete) do %>
-    <input type="submit" value="Logout"></input>
-    <% end %>
+<%= render 'shared/search' %>
+<% if @is_admin %>
+    <%= render 'shared/admin' %>
 <% end %>
-
-<button onclick="$('#search-box').fadeToggle()">Search</button>
-
-<div id='search-box' style="display:none;">
-    <%= form_tag("/items", method: "get") do %>
-        <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q) %>
-        <%= submit_tag("Search") %>
-    <% end %>
-
-  <button onclick="$('#advanced-search').fadeToggle()">Advanced Search</button>
-  <div id='advanced-search' style="display:none;">Advanced shit</div>
-
-</div>
 
 <%= yield %>
 

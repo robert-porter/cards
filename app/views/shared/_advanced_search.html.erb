@@ -1,0 +1,136 @@
+<form action="/items" id="advanced-search-form">
+  <h2>Search by</h2>
+  <br>
+  <button type="button" onclick="clearAll()">Clear all</button>
+  <br>
+  <br>
+  <select name="all_or_any">
+    <option value="any">Match any values</option>
+    <option value="all">Match all values</option>
+  </select>
+  Sort by:
+  <select name="sort_by">
+    <option value="relevance">Relevance</option>
+    <option value="newest">Newest</option>
+    <option value="oldest">Oldest</option>
+    <option value="most_views">Most viewed</option>
+    <option value="least_views">Least viewed</option>
+    <option value="year_highest_to_lowest">Year(high to low)</option>
+    <option value="year_lowest_to_highest">Year(low to high)</option>
+    <option value="grade_highest_to_lowest">Grade(high to low)</option>
+    <option value="grade_lowest_to_highest">Grade(low to high)</option>
+  </select>
+  <br><br>
+  <span id="player-name-inputs">
+  Player names:
+  <input name="name_words" class="player-name-input"></span>
+  </span>
+  <br>
+  <br>
+  Teams:
+  <br>
+  <span id="team-checkboxes">
+  <% @teams.each do |team| %>
+    <span class="advanced-search-labeled-checkbox">
+        <input type="checkbox" id="team-checkbox" value ="<%= team.id %>"><%= team.name %>
+    </span>
+  <% end %>
+  <input name="teams" id="teams-input" type="hidden">
+  </span>
+  <br>
+  Manufacturers:
+  <br>
+  <br>
+  <span id="manufacturer-checkboxes">
+  <% @manufacturers.each do |manufacturer| %>
+    <span class="advanced-search-labeled-checkbox">
+        <input type="checkbox" id="manufacturers-checkbox" value ="<%= manufacturer.id %>"><%= manufacturer.name %>
+    </span>
+  <% end %>
+  <input name="manufacturers" id="manufacturers-input" type="hidden">
+  </span>
+  <br>
+  <br>
+  Products:
+  <br>
+  <span id="product-checkboxes">
+  <% @products.each do |product| %>
+    <span class="advanced-search-labeled-checkbox">
+        <input type="checkbox" id="products-checkbox" value ="<%= product.id %>"><%= product.name %>
+    </span>
+  <% end %>
+  <input name="products" id="products-input" type="hidden">
+  </span>
+  <br>
+  <br>
+  Tags:
+  <br>
+  <span id="tags-checkboxes">
+  <% @tags.each do |tag| %>
+    <span class="advanced-search-labeled-checkbox">
+      <input type="checkbox" id="tags-checkbox" value="<%= tag.id %>"><%= tag.name %>
+    </span>
+  <% end %>
+  <input name="tags" id="tags-input" type="hidden">
+  </span>
+  <br>
+  <br>
+  Year
+  <select name="year">
+    <option></option>
+    <% @years.each do |year| %>
+        <option value="<%= year.to_s %>">
+          <%= year.to_s %>
+        </option>
+    <% end %>
+  </select>
+  </span>
+   or years from:
+  <select name="year_min">
+    <option></option>
+    <% @years.each do |year| %>
+        <option value="<%= year.to_s %>">
+          <%= year.to_s %>
+        </option>
+    <% end %>
+  </select>
+  to:
+  <select name="year_max">
+    <% @years.each do |year| %>
+        <option value="<%= year.to_s %>">
+          <%= year.to_s %>
+        </option>
+    <% end %>
+    <option selected="selected"></option>
+  </select>
+  <br><br>
+  Grade:
+  <select>
+    <option></option>
+    <% (1..10).to_a.each do |grade| %>
+        <option value="grade">
+          <%= grade %>
+        </option>
+    <% end %>
+  </select>
+  or grade from:
+  <select>
+    <option></option>
+    <% (1..10).to_a.each do |grade| %>
+        <option value="grade">
+          <%= grade %>
+        </option>
+    <% end %>
+  </select>
+  to:
+  <select>
+    <% (1..10).to_a.each do |grade| %>
+        <option value="grade" selected="selected">
+          <%= grade %>
+        </option>
+    <% end %>
+    <option selected></option>
+  </select><br>
+  <br>
+  <input type="submit" onclick="advancedSearchFormSubmit()">
+</form>

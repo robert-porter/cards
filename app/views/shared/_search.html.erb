@@ -1,0 +1,40 @@
+
+<div id="search">
+<form action="/items" style="display: inline" method="get" id="search-form">
+    Search:
+    <span class="ui-widget">
+    <input name="q" id="search-field">
+    </span>
+    <%= submit_tag("Search") %>
+    <select name="all_or_any">
+      <option value="any">Any words</option>
+      <option value="all">All words</option>
+    </select>
+    Sort by:
+    <select name="sort_by">
+      <option value="relevance">Relevance</option>
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="most_views">Most viewed</option>
+      <option value="least_views">Least viewed</option>
+      <option value="year_highest_to_lowest">Year(high to low)</option>
+      <option value="year_lowest_to_highest">Year(low to high)</option>
+      <option value="grade_highest_to_lowest">Grade(high to low)</option>
+      <option value="grade_lowest_to_highest">Grade(low to high)</option>
+    </select>
+</form>
+<a href="#" onclick="$('#advanced-search').fadeToggle()">Advanced Search</a>
+<% if @params_string != nil %>
+    Showing results for: <%= @params_string %>
+    <form action="/items" style="display:inline;">
+      <input type="submit" value="Clear results">
+    </form>
+<% end %>
+
+
+</div>
+<div id='advanced-search'>
+    <%= render 'shared/advanced_search' %>
+</div>
+
+

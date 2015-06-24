@@ -1,15 +1,29 @@
 Rails.application.routes.draw do
+  get 'page/home'
+
   resources :items
-  resources :sessions, :only => [:create, :destroy]
-  resources :tags#, :only => [:create, :index, :show, :destroy]
+  get 'items/:id/clone' => 'items#clone'
+  resources :grades
+  resources :products
+
+  resources :sessions, :only => [:create, :destroy, :index]
+  resources :tags
   resources :manufacturers
   resources :teams
+
+  namespace :a do
+    resources :items
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'items#index'
+  root 'page#home'
 
+  get 'login' => 'sessions#index'
+
+  match '/search_suggestions', to: 'search_suggestions#index', via: :get
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

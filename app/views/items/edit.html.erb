@@ -1,9 +1,5 @@
-<h1>Editing Item</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @item %> |
-<% if @is_admin %>
-<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<% end %>
-<%= link_to 'Item list', items_path %>
+<div id="content">
+<%= render 'form' %><br>
+<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+<%= link_to 'Show', @item %>
+</div>

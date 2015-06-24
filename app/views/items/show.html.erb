@@ -1,40 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div id="content">
+    <div id="item-show-image">
+      <a href="javascript: window.open('<%= @item.image_url %>', null, 'height=y, width=x, toolbar=0, location=0, status=0, scrollbars=0, resizeable=0')">
+      <%= image_tag @item.image_url(:medium) %>
+      </a>
+    </div>
+    <strong>Name:</strong>
+    <%= link_to @item.name, "/items?q=#{@item.name}" %>
+    <br>
+    <strong>Manufacturer:</strong>
+    <%= link_to @item.manufacturer.name, "/items?q=#{@item.manufacturer.name}" %>
+    <br>
+    <strong>Team:</strong>
+    <%= link_to @item.team.name, "/items?q=#{@item.team.name}" %>
+    <br>
+    <strong>Product:</strong>
+    <%= link_to @item.product.name, "/items?q=#{@item.product.name}" %>
+    <br>
+    <strong>Year:</strong>
+    <% if @item.year != nil && @item.year != 0 %>
+        <%= link_to @item.year.to_s, "/items?q=#{@item.year.to_s}" %>
+    <% else %>
+        <%= link_to 'None', "/items?q=#{@item.year.to_s}" %>
+    <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @item.image_url(:medium) %>
-</p>
-
-<p>
-  <strong>Manufacturer:</strong>
-  <%= @manufacturer.name %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @team.name %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @item.year.to_s %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <% @item.tags.each do  |tag| %>
-      <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-</p>
-
-<%= link_to 'Item list', items_path %>
+    <br>
+    <strong>Grade:</strong>
+    <% if @item.grade != nil && @item.grade != 0 %>
+        <%= link_to @item.grade.to_s, "/items?q=#{@item.grade.to_s}" %>
+    <% else %>
+        <%= link_to 'None', "/items?q=#{@item.grade.to_s}" %>
+    <% end %>
+    <br>
+    <strong>Tags:</strong>
+    <% @item.tags.each do  |tag| %>
+      <% pp tag.name %>
+        <%= link_to tag.name, "/items?q=#{tag.name}" %>
+    <% end %>
+    <br>
+    <strong>Quantity: </strong><%= @item.quantity.to_s %>
+    <br>
+    <strong>Description:</strong>
+    <%= @item.description %>
+</div>

@@ -1,17 +1,4 @@
-
-<!--initialize all of the tag values for the tag control-->
-<%= javascript_tag do %>
-    window.tagCollection = new TagCollection([
-    <% @all_tags.each do |tag| %>
-        <%=raw '"' << tag.name << '",' %>
-    <% end %>],
-    [
-    <% @item.tags.each do |tag| %>
-        <%=raw '"' << tag.name << '",' %>
-    <% end %>]);
-<% end %>
-
-<%= form_for(@item, :html => {:multipart => true, :onsubmit => 'itemFormSubmit()'}) do |f| %>
+<%= form_for(@item, :html => {:onsubmit => 'itemFormSubmit()'}) do |f| %>
     <% if @item.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -27,33 +14,41 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %><br><br>
 
-    <%= f.label :description %><br>
-    <%= f.text_area :description %><br><br>
-
     <%= f.label :image %><br>
-    <%= image_tag (@item.image_url(:medium)) %>
-    <%= f.file_field :image %><br><br>
+    <%= image_tag (@item.image_url(:medium)) %><br>
+    <%= f.file_field :image %><br>
+    Url:<%= text_field_tag('item[image_url]', @image_url ) %><br><br>
 
-    <%= f.label :manufacturer %>
+    <%= f.label :manufacturer %><br>
     <select name="item[manufacturer_id">
       <% @manufacturers.each do |manufacturer| %>
-        <option value="<%=raw manufacturer.id %>" <%= "selected" if @item.manufacturer_id == manufacturer.id %>>
+        <option value="<%=raw manufacturer.id %>" <%= 'selected' if @item.manufacturer_id == manufacturer.id %>>
           <%=raw manufacturer.name %>
         </option>
       <% end %>
     </select><br><br>
 
-    <%= f.label :team %>
+    <%= f.label :team %><br>
     <select name="item[team_id]">
       <% @teams.each do |team| %>
-          <option value="<%=raw team.id %>"<%= "selected" if @item.team_id == team.id %>>
+          <option value="<%=raw team.id %>"<%= 'selected' if @item.team_id == team.id %>>
             <%=raw team.name %>
           </option>
       <% end %>
-    <select><br><br>
+    </select><br><br>
 
-    <%= f.label :year %>
+    <%= f.label :product %><br>
+    <select name="item[product_id]">
+    <% @products.each do |product| %>
+        <option value="<%=raw product.id %>"<%= "selected" if @item.product_id == product.id %>>
+          <%=raw product.name %>
+        </option>
+    <% end %>
+    </select><br><br>
+
+    <%= f.label :year %><br>
     <select name="item[year]">
+      <option value="0">None</option>
       <% (1900..2000).each do |year| %>
           <option value="<%= year.to_s %>"<%= "selected" if @item.year == year %>>
             <%= year.to_s %>
@@ -61,16 +56,31 @@
       <% end %>
     </select><br><br>
 
-    <!-- invisible to hold results of the tag control -->
-    <%= f.text_field :tag_list, :id => 'tag_list', :style => 'display:none' %>
+    <%= f.label :grade %><br>
+    <select name="item[grade]">
+      <option value="0">None</option>
+      <% @grades.each do |grade| %>
+          <option value="<%= grade.to_s %>"<%= "selected" if @item.grade == grade %>>
+            <%= grade.to_s %>
+          </option>
+      <% end %>
+    </select><br><br>
 
-    <label>Tags:</label>
-    <div id='item-tags'></div>
-    <button type="button" onclick="$('#tags-not-on-item').fadeToggle()" >Add tags:</button>
-    <div id='tags-not-on-item'>
-    </div>
+    Tags:
+    <span id="item-form-tags-checkboxes">
+    <% @tags.each do |tag| %>
+        <input type="checkbox" value="<%= tag.name %>" <%= 'checked' if @item.tags.include?(tag) %>><%= tag.name %>
+    <% end %>
+    <input name="tag_list" id="tag_list" type="hidden">
+    </span>
     <br>
     <br>
+
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :style => 'width:300px; height:150px;' %><br><br>
+
+    <%= f.label :quantity %><br>
+    <%= f.text_field :quantity, :style => 'width:40px;' %><br><br>
 
     <%= f.submit %>
 <% end %>

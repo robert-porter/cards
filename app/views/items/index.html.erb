@@ -1,25 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Items</h1>
-
-
-
-<% @items.each do |item| %>
-
-    <% if @is_admin %>
-        <%= link_to image_tag(item.image_url(:thumbnail)) << item.name, edit_item_path(item) %><br>
-    <% else %>
-        <%= link_to image_tag(item.image_url(:thumbnail)) << item.name, item %><br>
-    <% end %>
-
-<% end %>
-
-
+<div align="center">
+    <ul id="items">
+        <% @items.each do |item| %>
+            <%= render item %>
+        <% end %>
+    </ul>
+</div>
 <br>
-<%= will_paginate @items %>
-
-<br>
-
-<% if @is_admin %>
-    <%= link_to 'New Item', new_item_path %>
-<% end %>
+<div class="pagination">
+    <%= will_paginate @items %>
+</div>

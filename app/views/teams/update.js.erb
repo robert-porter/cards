@@ -1,0 +1,11 @@
+$('.admin-edit').bind('ajax:success', function() {
+
+    var li = $(this).closest('li');
+    var name = li.find('.team-name');
+    name.text("<%= @team.name %>");
+    var synonyms = li.find('.team-synonyms');
+    synonyms.text("<%= @team.synonyms %>");
+
+    li.find('.admin-edit').hide();
+    li.find('.admin-show').show();
+});

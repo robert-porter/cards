@@ -3,59 +3,56 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_permissions, only: [:new, :create, :edit, :update, :destroy ]
 
-
-
   # GET /items
   def index
-    if(params[:q] == nil)
-      @items = Item.paginate(:page => params[:page])
+    if params[:q] == nil
+      @items = WillPaginate::Collection.create(params[:page] || 1, 12) do |pager|
+        result, total_items = advanced_search params, pager.offset, pager.per_page
+        pager.replace(result)
+        pager.total_entries = total_items
+        pp total_items
+      end
     else
-      @items = parse_query_language(params[:q]).evaluate.paginate(:page => params[:page])
+      @items = WillPaginate::Collection.create(params[:page] || 1, 12) do |pager|
+        result, total_items = parse_query params, pager.offset, pager.per_page
+        pager.replace(result)
+        pager.total_entries = total_items
+      end
     end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /items/1
   def show
+    @item.views = @item.views + 1
+    @item.save
     return if performed?
-
-    @team = Team.find(@item.team_id)
-    @manufacturer = Manufacturer.find(@item.manufacturer_id)
   end
 
   # GET /items/new
   def new
     return if performed?
-    @all_tags = ActsAsTaggableOn::Tag.all()
+    @all_tags = Tag.all
     @item = Item.new
+  end
+
+  def clone
+    item = Item.find(params[:id])
+    image_url = item.image
+    @item = item.dup
+    @image_url = "#{image_url}"
+    @item.tag_list = item.tag_list
+    pp @item
+    render :edit
   end
 
   # GET /items/1/edit
   def edit
     return if performed?
-
-    if @item.manufacturer_id != nil
-      @manufacturer = Manufacturer.find(@item.manufacturer_id)
-    else
-      @manufacturer = Manufacturer.where(:name => 'None').first
-      @item.manufacturer_id = @manufacturer.id
-    end
-    if @item.team_id != nil
-      @team = Team.find(@item.team_id)
-    else
-      @team = Team.where(:name => 'None').first
-      @item.team_id = @team.id
-    end
-
-    @teams = Team.all
-    @manufacturers = Manufacturer.all
-
-    @all_tags = ActsAsTaggableOn::Tag.all()
-    @tags_list_string = ''
-    @item.tags.each_with_index do |tag, i|
-      @tags_list_string << tag.name
-      @tags_list_string << ', ' if i < @item.tags.size - 1
-    end
   end
 
   # POST /items
@@ -63,7 +60,13 @@ class ItemsController < ApplicationController
     return if performed?
 
     @item = Item.new(item_params)
-
+    @item.tag_list = params[:tag_list] || ''
+    image_url_param =  params.require('item').permit('image_url')
+    if image_url_param != nil && image_url_param['image_url'] != ''
+      file = File.open(File.join(Rails.root, 'public/', image_url_param['image_url']))
+      @item.image = file
+    end
+    pp @item
     if @item.save
       redirect_to @item, notice: 'Item was successfully created.'
     else
@@ -74,8 +77,11 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   def update
     return if performed?
-
+    @item.tag_list = params[:tag_list]
+    pp params.require(:item).permit(:tag_list)
+    pp @item.tags
     if @item.update(item_params)
+
       redirect_to @item, notice: 'Item was successfully updated.'
     else
       render :edit
@@ -107,8 +113,7 @@ class ItemsController < ApplicationController
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :image, :page, :tag_list, :team_id, :manufacturer_id, :year)
+      params.require(:item).permit(:name, :description, :tag_list, :team_id, :image, :manufacturer_id, :product_id, :year, :grade, :price, :quantity)
     end
 end

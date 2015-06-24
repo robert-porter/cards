@@ -11,7 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608214040) do
+ActiveRecord::Schema.define(version: 20150624041519) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "add_price_to_items", force: :cascade do |t|
+    t.integer  "price_cents"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_name_word_maps", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "name_word_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "item_name_word_maps", ["item_id"], name: "index_item_name_word_maps_on_item_id", using: :btree
+  add_index "item_name_word_maps", ["name_word_id"], name: "index_item_name_word_maps_on_name_word_id", using: :btree
+
+  create_table "item_word_name_maps", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "name_word_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "item_word_name_maps", ["item_id"], name: "index_item_word_name_maps_on_item_id", using: :btree
+  add_index "item_word_name_maps", ["name_word_id"], name: "index_item_word_name_maps_on_name_word_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -19,10 +55,14 @@ ActiveRecord::Schema.define(version: 20150608214040) do
     t.string   "image"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "mfg"
     t.integer  "year"
     t.integer  "manufacturer_id"
     t.integer  "team_id"
+    t.integer  "product_id"
+    t.integer  "grade"
+    t.integer  "views"
+    t.integer  "quantity"
+    t.integer  "price_cents"
   end
 
   create_table "manufacturers", force: :cascade do |t|
@@ -31,30 +71,38 @@ ActiveRecord::Schema.define(version: 20150608214040) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       limit: 128
-    t.datetime "created_at"
+  create_table "name_words", force: :cascade do |t|
+    t.string   "word"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "synonyms"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "synonyms"
   end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "synonyms"
   end
 
 end

@@ -4,83 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a06d6fc8-9065-4254-bbde-8a7f8f99d705" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/grades/_grade.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/items/_item.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/admin.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/admin/admin_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/grades/create.js.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/teams/destroy.js.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/ebayr.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/sessions/entry.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/pages/home.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/items/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/items/index.js.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/admin/items_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/admin/pages_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/admin/teams/update.js.erb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin/item.es6" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/admin/item_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/sessions/index.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/shared/_admin.html.erb" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/admin.es6" afterPath="$PROJECT_DIR$/app/assets/javascripts/admin/admin.es6" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/javascripts/items.es6" afterPath="$PROJECT_DIR$/app/assets/javascripts/admin/items.es6" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/_admin.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/admin.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/grades_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/grades_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/manufacturers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/manufacturers_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/products_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/sessions_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/tags_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/tags_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/teams_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/teams_controller.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/grades/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/grades/index.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/items/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/items/_form.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/items/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/items/edit.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/items/new.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/items/new.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/manufacturers/_manufacturer.erb" afterPath="$PROJECT_DIR$/app/views/admin/manufacturers/_manufacturer.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/manufacturers/create.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/manufacturers/create.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/manufacturers/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/grades/destroy.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/manufacturers/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/manufacturers/index.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/manufacturers/update.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/manufacturers/update.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/products/_product.erb" afterPath="$PROJECT_DIR$/app/views/admin/products/_product.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/products/create.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/products/create.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/products/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/manufacturers/destroy.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/products/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/products/index.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/products/update.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/products/update.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/tags/_tag.erb" afterPath="$PROJECT_DIR$/app/views/admin/tags/_tag.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/tags/create.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/tags/create.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/tags/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/products/destroy.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/tags/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/tags/index.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/tags/update.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/tags/update.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/teams/_team.erb" afterPath="$PROJECT_DIR$/app/views/admin/teams/_team.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/teams/create.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/teams/create.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/teams/destroy.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/tags/destroy.js.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/teams/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/teams/index.html.erb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/teams/update.js.erb" afterPath="$PROJECT_DIR$/app/views/admin/grades/update.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150615010338_create_item_word_name_maps.rb" afterPath="$PROJECT_DIR$/db/migrate/20150615010338_create_item_word_name_maps.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20150615024313_create_item_name_word_maps.rb" afterPath="$PROJECT_DIR$/db/migrate/20150615024313_create_item_name_word_maps.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_advanced_search.html.erb" afterPath="$PROJECT_DIR$/app/views/shared/_advanced_search.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/_item.html.erb" afterPath="$PROJECT_DIR$/app/views/items/_item.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/shared/_search.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/grade.rb" afterPath="$PROJECT_DIR$/app/models/grade.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/items_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/items_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/items_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/items_controller_test.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/items_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/items_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/manufacturer.rb" afterPath="$PROJECT_DIR$/app/models/manufacturer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/paginations.es6" afterPath="$PROJECT_DIR$/app/assets/javascripts/paginations.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/product.rb" afterPath="$PROJECT_DIR$/app/models/product.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/items/show.html.erb" afterPath="$PROJECT_DIR$/app/views/items/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/tag.rb" afterPath="$PROJECT_DIR$/app/models/tag.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/team.rb" afterPath="$PROJECT_DIR$/app/models/team.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="a06d6fc8-9065-4254-bbde-8a7f8f99d705" name="Default" comment="" />
     <ignored path="cards.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -194,8 +118,8 @@
       <file leaf-file-name="ebayr.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/initializers/ebayr.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15078534">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.07539267">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -381,6 +305,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cards" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cards" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="log" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1020,7 +958,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1439" y="0" width="1922" height="1055" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1028,7 +966,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47496423" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1495,8 +1433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/ebayr.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15078534">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.07539267">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>

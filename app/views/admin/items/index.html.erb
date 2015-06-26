@@ -1,0 +1,13 @@
+
+
+<div align="center">
+    <ul id="items">
+        <% @items.each do |item| %>
+            <%= render item %>
+        <% end %>
+    </ul>
+</div>
+<br>
+<div class="pagination">
+    <%= will_paginate @items %>
+</div>

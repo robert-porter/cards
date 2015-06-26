@@ -1,0 +1,36 @@
+
+<li id="item" style="display: block;background-color: #eeeeee;  border:solid; text-align: left">
+  <a href="<%= item_path(item) %>" style="display: block; height: 120px">
+      <b>
+        <img src="<%= item.image_url(:thumbnail) %>" id="item-list-img;" >
+        <%= item.year if item.year != nil && item.year != 0 %>
+        <% if item.manufacturer.name != 'None' %>
+            <%= item.manufacturer.name %>
+        <% end %>
+        <%= item.name %>
+      </b>
+      <br>
+      <%= item.description[0..200] << '...' if item.description.size > 200 %>
+  </a>
+  <div align="center">
+        <span class="items-list-admin-link">
+        <%= link_to 'Show', item %>
+        </span>
+    <div class="items-list-admin-link">
+      <a href="<%= edit_admin_item_path(item) %>">
+        Edit
+      </a>
+    </div>
+    <div class="items-list-admin-link">
+      <%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+          Destroy
+      <% end %>
+    </div>
+    <div class="items-list-admin-link">
+      <a href="<%= "items/#{item.id}/clone" %>">
+        Clone
+      </a>
+    </div>
+  </div>
+  <br>
+</li>

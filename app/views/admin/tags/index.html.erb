@@ -1,0 +1,19 @@
+<div id="content">
+
+  <h1>Listing tags</h1>
+
+  <ul id="admin-list">
+    <% @tags.each do  |tag| %>
+        <%= render tag %>
+    <% end %>
+  </ul>
+
+  <h2>Create new tag</h2>
+  <%= form_for [:admin, @tag], remote: true do |f| %>
+      <%= f.label :name %><br>
+      <%= f.text_field(:name) %><br>
+      <%= f.label :synonyms %><br>
+      <%= f.text_area :synonyms %><br>
+      <%= f.submit %>
+  <% end %>
+</div>

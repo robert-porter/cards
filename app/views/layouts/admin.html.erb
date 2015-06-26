@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cards</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<div id="admin">
+  Logged in as administrator
+  <%= form_tag("/admin/logout", :style => "display:inline") do %>
+      <%= submit_tag "Logout" %>
+  <% end %> |
+  <%= link_to 'Create new item', new_admin_item_path %> |
+  <%= link_to 'Admin home', '/admin/home' %>
+</div>
+
+<%= render 'shared/search' %>
+
+<%= yield %>
+
+</body>
+</html>

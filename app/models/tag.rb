@@ -15,7 +15,6 @@ class Tag < ActiveRecord::Base
     SearchSuggestion.remove_term self.name
   end
 
-
   def self.sorted
     self.all.sort_by { |tag| tag.name }
   end

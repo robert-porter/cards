@@ -1,0 +1,16 @@
+$('.admin-edit').bind('ajax:success', function() {
+
+    var li = $(this).closest('li');
+    var numericGrade = li.find('.grade-numeric-grade');
+    numericGrade.text("<%= @grade.numeric_grade.to_s %>");
+    var selfGradedName = li.find('.grade-self-graded-name');
+    selfGradedName.text("<%= @grade.self_graded_name.to_s %>");
+    var selfGradedSynonyms = li.find('.grade-self-graded-synonyms');
+    selfGradedSynonyms.text("<%= @grade.self_graded_synonyms.to_s %>");
+    var professionallyGradedName = li.find('.grade-professionally-graded-name');
+    professionallyGradedName.text("<%= @grade.professionally_graded_name.to_s %>");
+    var professionallyGradedSynonyms = li.find('.grade-professionally-graded-synonyms');
+    professionallyGradedSynonyms.text("<%= @grade.professionally_graded_synonyms %>")
+    li.find('.admin-edit').hide();
+    li.find('.admin-show').show();
+});

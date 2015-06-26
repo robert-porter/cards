@@ -18,6 +18,8 @@
 @import "normalize.css";
 @import "search.scss";
 @import "pagination.scss";
+@import "admin.scss";
+@import "items.scss";
 
 #content {
     padding: 30px;

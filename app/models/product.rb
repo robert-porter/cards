@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_many :item
+  has_many :items
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -12,6 +12,13 @@ class Product < ActiveRecord::Base
 
   def remove_from_search_suggestions
     SearchSuggestion.remove_term self.name
+  end
+
+  def remove_item_references
+    self.items.each do |item|
+      item.team = Product.none_value
+      item.save
+    end
   end
 
   def self.none_value

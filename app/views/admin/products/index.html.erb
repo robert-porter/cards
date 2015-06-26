@@ -1,0 +1,19 @@
+<div id="content">
+
+  <h1>Listing products</h1>
+
+  <ul id="admin-list">
+    <% @products.each do  |product| %>
+        <%= render product %>
+    <% end %>
+  </ul>
+
+  <h2>Create new product</h2>
+  <%= form_for [:admin, @product], remote: true do |f| %>
+      <%= f.label :name %><br>
+      <%= f.text_field(:name) %><br>
+      <%= f.label :synonyms %><br>
+      <%= f.text_area :synonyms %><br>
+      <%= f.submit %>
+  <% end %>
+</div>

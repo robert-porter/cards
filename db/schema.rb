@@ -11,22 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624041519) do
+ActiveRecord::Schema.define(version: 20150625223705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "add_price_to_items", force: :cascade do |t|
-    t.integer  "price_cents"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "grades", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "grade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "self_graded_name"
+    t.integer  "numeric_grade"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "professionally_graded_name"
+    t.string   "self_graded_synonyms"
+    t.string   "professionally_graded_synonyms"
   end
 
   create_table "item_name_word_maps", force: :cascade do |t|
@@ -59,10 +56,12 @@ ActiveRecord::Schema.define(version: 20150624041519) do
     t.integer  "manufacturer_id"
     t.integer  "team_id"
     t.integer  "product_id"
-    t.integer  "grade"
     t.integer  "views"
     t.integer  "quantity"
     t.integer  "price_cents"
+    t.integer  "numeric_grade"
+    t.string   "card_number"
+    t.integer  "grade_id"
   end
 
   create_table "manufacturers", force: :cascade do |t|

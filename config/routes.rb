@@ -1,27 +1,30 @@
 Rails.application.routes.draw do
-  get 'page/home'
+
+  # You can have the root of your site routed with "root"
+  root 'page#home'
 
   resources :items
-  get 'items/:id/clone' => 'items#clone'
-  resources :grades
-  resources :products
+  get 'admin/items/:id/clone' => 'admin/items#clone'
 
-  resources :sessions, :only => [:create, :destroy, :index]
-  resources :tags
-  resources :manufacturers
-  resources :teams
 
-  namespace :a do
+  namespace :admin do
     resources :items
+    resources :sessions, :only => [:create, :destroy, :index]
+    resources :grades
+    resources :products
+
+    resources :tags
+    resources :manufacturers
+    resources :teams
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'page#home'
-
-  get 'login' => 'sessions#index'
+  get 'admin' => 'admin/sessions#entry'
+  post 'admin/login' => 'admin/sessions#login'
+  post 'admin/logout' => 'admin/sessions#logout'
+  get 'admin/home' => 'admin/pages#home'
 
   match '/search_suggestions', to: 'search_suggestions#index', via: :get
 

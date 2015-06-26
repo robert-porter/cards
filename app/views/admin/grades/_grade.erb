@@ -1,0 +1,48 @@
+<li>
+    <div class="admin-show">
+      Numeric grade:
+      <span class="grade-numeric-grade">
+      <%= grade.numeric_grade.to_s %>
+      </span><br>
+      Self graded name:
+      <span class="grade-self-graded-name">
+      <%= grade.self_graded_name.to_s %>
+      </span><br>
+      Self graded synonyms:
+      <span class="grade-self-graded-synonyms">
+      <%= grade.self_graded_synonyms.to_s %>
+      </span><br>
+      Professionally graded name:
+      <span class="grade-professionally-graded-name">
+      <%= grade.professionally_graded_name.to_s %>
+      </span><br>
+      Professionally graded synonyms:
+      <span class="grade-professionally-graded-synonyms">
+      <%= grade.professionally_graded_synonyms.to_s %>
+      </span><br>
+    </div>
+    <div class="admin-edit" style="display: none">
+        <%= form_for [:admin, grade], remote: true do |f| %>
+            <%= f.label :numeric_grade %><br>
+            <%= f.text_field :numeric_grade %><br>
+            <%= f.label :self_graded_name %><br>
+            <%= f.text_field(:self_graded_name) %><br>
+            <%= f.label :self_graded_synonyms %><br>
+            <%= f.text_area :self_graded_synonyms %><br>
+            <%= f.label :professionally_graded_name %><br>
+            <%= f.text_field(:professionally_graded_name) %><br>
+            <%= f.label :professionally_graded_synonyms %><br>
+            <%= f.text_area :professionally_graded_synonyms %><br>
+            <%= f.submit %>
+        <% end %>
+    </div>
+
+    <a href="#" class="admin-edit-link">Edit</a>
+    <%= link_to 'Destroy',
+                 admin_grade_path(grade),
+                 method: :delete,
+                 data: { confirm: 'Are you sure?'},
+                 :remote => true,
+                 :class => 'admin-delete' %>
+  <hr>
+</li>

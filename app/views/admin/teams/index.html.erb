@@ -1,0 +1,19 @@
+<div id="content">
+
+<h1>Listing teams</h1>
+
+<ul id="admin-list">
+    <% @teams.each do  |team| %>
+      <%= render team %>
+    <% end %>
+</ul>
+
+<h2>Create new team</h2>
+<%= form_for [:admin, @team], remote: true do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field(:name) %><br>
+    <%= f.label :synonyms %><br>
+    <%= f.text_area :synonyms %><br>
+    <%= f.submit %>
+<% end %>
+</div>

@@ -1,0 +1,30 @@
+<li>
+  <div class="admin-show">
+    Name:
+        <span class="product-name">
+        <%= product.name %>
+        </span><br>
+    Synonyms:
+        <span class="product-synonyms">
+        <%= product.synonyms %>
+        </span>
+  </div>
+  <div class="admin-edit" style="display: none">
+    <%= form_for [:admin, product], remote: true do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field(:name) %><br>
+        <%= f.label :synonyms %><br>
+        <%= f.text_area :synonyms %><br>
+        <%= f.submit %>
+    <% end %>
+  </div>
+
+  <a href="#" class="admin-edit-link">Edit</a>
+  <%= link_to 'Destroy',
+              admin_product_path(product),
+              method: :delete,
+              data: { confirm: 'Are you sure?'},
+              :remote => true,
+              :class => 'admin-delete' %>
+  <hr>
+</li>

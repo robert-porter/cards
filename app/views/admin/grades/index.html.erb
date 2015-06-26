@@ -1,0 +1,16 @@
+<div id="content">
+
+<h1>Listing grades</h1>
+
+<ul id="admin-list">
+    <% @grades.each do  |grade| %>
+      <%= render grade %>
+    <% end %>
+</ul>
+
+<h2>Create new grade</h2>
+<%= form_for [:admin, @grade], remote: true do |f| %>
+
+    <%= f.submit %>
+<% end %>
+</div>

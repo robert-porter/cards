@@ -37,7 +37,7 @@ def param_to_integer_array(param)
   end
 end
 
-def advanced_search(params, offset, limit)
+def advanced_search(params, page, per_page)
 
   search = Search.new
 
@@ -76,10 +76,11 @@ def advanced_search(params, offset, limit)
     operator = ' and '
   end
 
-  search_query(search, operator, offset, limit)
+  search_query(search, operator, page, per_page)
 end
 
-def parse_query(params, offset, limit)
+def parse_query(params, page, per_page)
+  page = page.to_i
 
   search = Search.new
 
@@ -95,7 +96,7 @@ def parse_query(params, offset, limit)
   words = query.split
 
   if words.size == 0
-    return order_query(Item.all, search.sort_by).limit(limit).offset(offset), Item.count
+    return order_query(Item.all, search.sort_by).paginate(:page => page, :per_page => per_page )
   end
 
   search.name_words = words
@@ -107,7 +108,7 @@ def parse_query(params, offset, limit)
   search.year_min, search.year_max = match_year_range(words)
 
 
-  search_query search, operator, offset, limit
+  search_query search, operator, page, per_page
 end
 
 def non_join_query(search, operator)
@@ -192,7 +193,12 @@ def tag_query(search, operator)
   end
 end
 
-def search_query(search, operator, offset, limit)
+def search_query(search, operator, page, per_page)
+
+  page = page.to_i
+
+  limit = per_page
+  offset = (page - 1) * per_page
 
   query = 'select id, created_at, year, views, sum(matches) as matches from('
   subquery = (non_join_query(search, operator) +
@@ -201,7 +207,7 @@ def search_query(search, operator, offset, limit)
 
 
   if subquery == ''
-    return order_query(Item.all, search.sort_by).limit(limit).offset(offset), Item.count
+    return order_query(Item.all, search.sort_by).paginate(:page => page, :per_page => per_page )
   end
 
   query << subquery
@@ -218,25 +224,30 @@ def search_query(search, operator, offset, limit)
 
   results = ActiveRecord::Base.connection.execute(query)
 
-  items = []
+  ar_results = []
   offset.upto([results.num_tuples - 1, offset + limit - 1].min).each do |i|
-    items.append Item.find(results[i]['id'].to_i)
+    ar_results.append Item.find(results[i]['id'].to_i)
   end
 
-  return items, results.num_tuples
+  paginated_results = WillPaginate::Collection.create(page, 12) do |pager|
+    pager.replace(ar_results)
+    pager.total_entries = results.num_tuples
+  end
+
+  return paginated_results
 end
 
 def match_words(words, model)
   match_ids = []
   words.each do |word|
-    results = model.where('upper(name) like ?', word.upcase)
+    results = model.where('upper(name) like ?', "%#{word.upcase}%")
     if results.size > 0
       results.each do |team|
         match_ids << team.id
       end
     end
   end
-  return match_ids
+  match_ids
 end
 
 def match_years(words)
@@ -269,23 +280,23 @@ end
 
 def order_query(query, sort_by)
   if sort_by == :newest
-    return query.order(created_at: :desc)
+    query.order(created_at: :desc)
   elsif sort_by == :oldest
-    return query.order(created_at: :asc)
+    query.order(created_at: :asc)
   elsif sort_by == :year_highest_to_lowest
-    return query.order(year: :desc)
+    query.order(year: :desc)
   elsif sort_by == :year_lowest_to_highest
-    return query.order(year: :asc)
+    query.order(year: :asc)
   elsif sort_by == :grade_highest_to_lowest
-    return query.order(grade: :desc)
+    query.order(grade: :desc)
   elsif sort_by == :grade_lowest_to_highest
-    return query.order(grade: :asc)
+    query.order(grade: :asc)
   elsif sort_by == :most_views
-    return query.order(views: :desc)
+    query.order(views: :desc)
   elsif sort_by == :least_views
-    return query.order(views: :asc)
+    query.order(views: :asc)
   else
-    return query
+    query
   end
 end
 

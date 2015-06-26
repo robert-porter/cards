@@ -7,6 +7,13 @@
     <strong>Name:</strong>
     <%= link_to @item.name, "/items?q=#{@item.name}" %>
     <br>
+    <strong>Card#:</strong>
+    <% if @item.card_number %>
+      <%= @item.card_number %>
+    <% else %>
+      None
+    <% end %>
+    <br>
     <strong>Manufacturer:</strong>
     <%= link_to @item.manufacturer.name, "/items?q=#{@item.manufacturer.name}" %>
     <br>
@@ -20,21 +27,25 @@
     <% if @item.year != nil && @item.year != 0 %>
         <%= link_to @item.year.to_s, "/items?q=#{@item.year.to_s}" %>
     <% else %>
-        <%= link_to 'None', "/items?q=#{@item.year.to_s}" %>
+        None
     <% end %>
 
     <br>
     <strong>Grade:</strong>
-    <% if @item.grade != nil && @item.grade != 0 %>
-        <%= link_to @item.grade.to_s, "/items?q=#{@item.grade.to_s}" %>
+    <% if @item.numeric_grade != nil && @item.numeric_grade != 0 %>
+        <%= link_to @item.grade.name, "/items?q=#{@item.grade.name}" %>
     <% else %>
-        <%= link_to 'None', "/items?q=#{@item.grade.to_s}" %>
+        None
     <% end %>
     <br>
     <strong>Tags:</strong>
-    <% @item.tags.each do  |tag| %>
-      <% pp tag.name %>
-        <%= link_to tag.name, "/items?q=#{tag.name}" %>
+    <% if @item.tags.size == 0 %>
+      None
+    <% else %>
+        <% @item.tags.each do  |tag| %>
+          <% pp tag.name %>
+            <%= link_to tag.name, "/items?q=#{tag.name}" %>
+        <% end %>
     <% end %>
     <br>
     <strong>Quantity: </strong><%= @item.quantity.to_s %>

@@ -14,27 +14,3 @@
   </a>
 </li>
 
-
-<% if @is_admin %>
-    <div align="center">
-        <span class="items-list-admin-link">
-        <%= link_to 'Show', item %>
-        </span>
-      <div class="items-list-admin-link">
-        <a href="<%= edit_item_path(item) %>">
-          Edit
-        </a>
-      </div>
-      <div class="items-list-admin-link">
-        <%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }  do %>
-            Destroy
-        <% end %>
-      </div>
-      <div class="items-list-admin-link">
-        <a href="<%= "items/#{item.id}/clone" %>">
-          Clone
-        </a>
-      </div>
-    </div>
-    <br>
-<% end %>

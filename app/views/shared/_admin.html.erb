@@ -1,9 +1,0 @@
-<div id="admin">
-
-Logged in as administrator
-<%= form_tag("/sessions/x", :style => "display:inline", method: :delete) do %>
-    <%= submit_tag "Logout" %>
-<% end %> |
-<%= link_to 'Create new item', new_item_path %> |
-<%= link_to 'Admin page', '/admin' %>
-</div>

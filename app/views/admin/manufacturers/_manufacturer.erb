@@ -1,0 +1,24 @@
+<li>
+  <div class="admin-show">
+    Name:
+        <span class="manufacturer-name">
+        <%= manufacturer.name %>
+        </span><br>
+  </div>
+  <div class="admin-edit" style="display: none">
+    <%= form_for [:admin, manufacturer], remote: true do |f| %>
+        <%= f.label :name %><br>
+        <%= f.text_field(:name) %><br>
+        <%= f.submit %>
+    <% end %>
+  </div>
+
+  <a href="#" class="admin-edit-link">Edit</a>
+  <%= link_to 'Destroy',
+              admin_manufacturer_path(manufacturer),
+              method: :delete,
+              data: { confirm: 'Are you sure?'},
+              :remote => true,
+              :class => 'admin-delete' %>
+  <hr>
+</li>

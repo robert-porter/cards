@@ -25,6 +25,17 @@ class Item < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  def annotated_name
+    name = ''
+    if self.year != nil && self.year != 0
+      name << self.year.to_s << ' '
+    end
+    if self.manufacturer.name != 'None'
+      name << self.manufacturer.name << ' '
+    end
+    name << self.name
+  end
+
   def default_values
     if self.team == nil
       self.team = Team.none_value

@@ -3,11 +3,7 @@
   <a href="<%= item_path(item) %>" style="display: block; height: 120px">
       <b>
         <img src="<%= item.image_url(:thumbnail) %>" id="item-list-img;" >
-        <%= item.year if item.year != nil && item.year != 0 %>
-        <% if item.manufacturer.name != 'None' %>
-            <%= item.manufacturer.name %>
-        <% end %>
-        <%= item.name %>
+        <%= item.annotated_name %>
       </b>
       <br>
       <%= item.description[0..200] << '...' if item.description.size > 200 %>

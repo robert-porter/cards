@@ -1,9 +1,9 @@
 $(function() {
 
-    var loaded = [$('.pagination .first_page').attr('href')];
 
+    let loaded = [];
     let url = $('.pagination .next_page').attr('href');
-
+    loaded.push(url.replace(/page=\d/, 'page=1'));
     $(window).scroll(function(){
         if  ( ($(document).height() - $(window).height()) - $(window).scrollTop() < 300 ){
             let url = $('.pagination .next_page').attr('href');

@@ -255,7 +255,7 @@
 
 class PageController < ApplicationController
   def home
-
+=begin
     @timestamp = Ebayr.call(:VerifyAddFixedPriceItem,
     [:Item => [
          get_item_parameters(66) <<
@@ -282,8 +282,9 @@ class PageController < ApplicationController
     ])
 
     pp @timestamp
+=end
   end
-
+=begin
   def get_category_features
     Ebayr.call(:GetCategoryFeatures, [
                                        [:AllFeaturesForCategory => 'true'],
@@ -323,5 +324,5 @@ class PageController < ApplicationController
      ]
     ]
   end
-
+=end
 end

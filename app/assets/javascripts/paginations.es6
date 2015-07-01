@@ -1,6 +1,6 @@
 $(function() {
 
-    var loaded = [window.location.href, window.location.href+'&page=1'];
+    var loaded = [$('.pagination .first_page').attr('href')];
 
     let url = $('.pagination .next_page').attr('href');
 

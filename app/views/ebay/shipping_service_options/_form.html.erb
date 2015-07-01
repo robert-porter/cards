@@ -1,0 +1,29 @@
+<%= form_for(@ebay_shipping_service_option) do |f| %>
+  <% if @ebay_shipping_service_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ebay_shipping_service_option.errors.count, "error") %> prohibited this ebay_shipping_service_option from being saved:</h2>
+
+      <ul>
+      <% @ebay_shipping_service_option.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :shipping_service_id %><br>
+    <select name="ebay_shipping_service_option[shipping_service_id]">
+      <% Ebay::ShippingService.all.each do |o| %>
+        <option value="<%= o.id %>"><%= o.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_service_cost %><br>
+    <%= f.text_field :shipping_service_cost %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

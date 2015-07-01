@@ -1,5 +1,4 @@
 
-$item-width: 360px;
 
 
 #items  {
@@ -14,9 +13,24 @@ $item-width: 360px;
 }
 
 
-#item {
-  height: 140px;
+.item {
+  height: 110px;
+  display: block;
+  background-color: #eeeeee;
+  border: solid;
+  text-align: left;
 }
+
+
+
+#item :hover {
+  background-color: #730E15;
+}
+
+#item :visited {
+  background-color: yellow;
+}
+
 
 #item-with-admin {
   margin: 10px;
@@ -25,7 +39,7 @@ $item-width: 360px;
   border-style: solid;
   background-color: #eeeeee;
   height: 180px;
-  width: $item-width;
+  width: 380px;
   text-align: left;
   display: inline-block;
 }

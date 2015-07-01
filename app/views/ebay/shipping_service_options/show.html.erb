@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shipping service:</strong>
+  <%= @ebay_shipping_service_option.shipping_service.name %>
+</p>
+
+<p>
+  <strong>Shipping service cost:</strong>
+  <%= @ebay_shipping_service_option.shipping_service_cost %>
+</p>
+
+
+<%= link_to 'Edit', edit_ebay_shipping_service_option_path(@ebay_shipping_service_option) %> |
+<%= link_to 'Back', ebay_shipping_service_options_path %>

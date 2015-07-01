@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ebay Return Policies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Refund option</th>
+      <th>Returns accepted option</th>
+      <th>Returns within option</th>
+      <th>Shipping cost paid by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ebay_return_policies.each do |ebay_return_policy| %>
+      <tr>
+        <td><%= ebay_return_policy.name %></td>
+        <td><%= ebay_return_policy.description %></td>
+        <td><%= ebay_return_policy.refund_option %></td>
+        <td><%= ebay_return_policy.returns_accepted_option %></td>
+        <td><%= ebay_return_policy.returns_within_option %></td>
+        <td><%= ebay_return_policy.shipping_cost_paid_by %></td>
+        <td><%= link_to 'Show', ebay_return_policy %></td>
+        <td><%= link_to 'Edit', edit_ebay_return_policy_path(ebay_return_policy) %></td>
+        <td><%= link_to 'Destroy', ebay_return_policy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Return policy', new_ebay_return_policy_path %>

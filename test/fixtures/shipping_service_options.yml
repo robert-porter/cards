@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipping_service_id: 1
+  shipping_service_cost: 9.99
+  : 
+  16,: MyString
+  scale: MyString
+  2: MyString
+
+two:
+  shipping_service_id: 1
+  shipping_service_cost: 9.99
+  : 
+  16,: MyString
+  scale: MyString
+  2: MyString

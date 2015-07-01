@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ebay Shipping Service Options</h1>
+
+<table border="solid">
+  <thead>
+    <tr>
+      <th>Shipping service</th>
+      <th>Shipping service cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ebay_shipping_service_options.each do |ebay_shipping_service_option| %>
+      <tr>
+        <td><%= ebay_shipping_service_option.shipping_service.name %></td>
+        <td>$<%= sprintf '%.2f', ebay_shipping_service_option.shipping_service_cost %></td>
+        <td><%= link_to 'Show', ebay_shipping_service_option %></td>
+        <td><%= link_to 'Edit', edit_ebay_shipping_service_option_path(ebay_shipping_service_option) %></td>
+        <td><%= link_to 'Destroy', ebay_shipping_service_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shipping service option', new_ebay_shipping_service_option_path %>

@@ -1,0 +1,2 @@
+module Ebay::ShippingServiceOptionsHelper
+end

@@ -1,7 +1,5 @@
-class PaymentMethods
-
-end
-
-class EBay
-
+module Ebay
+  def self.table_name_prefix
+    'ebay_'
+  end
 end

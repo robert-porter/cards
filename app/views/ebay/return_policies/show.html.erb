@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ebay_return_policy.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ebay_return_policy.description %>
+</p>
+
+<p>
+  <strong>Refund option:</strong>
+  <%= @ebay_return_policy.refund_option %>
+</p>
+
+<p>
+  <strong>Returns accepted option:</strong>
+  <%= @ebay_return_policy.returns_accepted_option %>
+</p>
+
+<p>
+  <strong>Returns within option:</strong>
+  <%= @ebay_return_policy.returns_within_option %>
+</p>
+
+<p>
+  <strong>Shipping cost paid by:</strong>
+  <%= @ebay_return_policy.shipping_cost_paid_by %>
+</p>
+
+<%= link_to 'Edit', edit_ebay_return_policy_path(@ebay_return_policy) %> |
+<%= link_to 'Back', ebay_return_policies_path %>

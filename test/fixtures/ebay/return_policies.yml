@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  refund_option: MyString
+  returns_accepted_option: MyString
+  returns_within_option: MyString
+  shipping_cost_paid_by: MyString
+
+two:
+  name: MyString
+  description: MyText
+  refund_option: MyString
+  returns_accepted_option: MyString
+  returns_within_option: MyString
+  shipping_cost_paid_by: MyString

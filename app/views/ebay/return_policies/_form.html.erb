@@ -1,0 +1,41 @@
+<%= form_for(@ebay_return_policy) do |f| %>
+  <% if @ebay_return_policy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ebay_return_policy.errors.count, "error") %> prohibited this ebay_return_policy from being saved:</h2>
+
+      <ul>
+      <% @ebay_return_policy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :refund_option %><br>
+    <%= f.text_field :refund_option %>
+  </div>
+  <div class="field">
+    <%= f.label :returns_accepted_option %><br>
+    <%= f.text_field :returns_accepted_option %>
+  </div>
+  <div class="field">
+    <%= f.label :returns_within_option %><br>
+    <%= f.text_field :returns_within_option %>
+  </div>
+  <div class="field">
+    <%= f.label :shipping_cost_paid_by %><br>
+    <%= f.text_field :shipping_cost_paid_by %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

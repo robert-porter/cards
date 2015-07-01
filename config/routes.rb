@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  namespace :ebay do
+    resources :shipping_service_options
+  end
+  resources :shipping_service_options
+  namespace :ebay do
+    resources :shipping_services
+  end
+  namespace :ebay do
+    resources :return_policies
+  end
   # You can have the root of your site routed with "root"
   root 'page#home'
 

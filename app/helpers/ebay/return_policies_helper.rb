@@ -1,0 +1,2 @@
+module Ebay::ReturnPoliciesHelper
+end

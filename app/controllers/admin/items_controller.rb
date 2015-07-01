@@ -28,7 +28,6 @@ class Admin::ItemsController < Admin::AdminController
     @item = item.dup
     @image_url = "#{image_url}"
     @item.tag_list = item.tag_list
-    pp @item
     render :edit
   end
 
@@ -46,7 +45,6 @@ class Admin::ItemsController < Admin::AdminController
       file = File.open(File.join(Rails.root, 'public/', image_url_param['image_url']))
       @item.image = file
     end
-    pp @item
     if @item.save
       redirect_to @item, notice: 'Item was successfully created.'
     else

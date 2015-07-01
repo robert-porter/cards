@@ -1,6 +1,6 @@
 class Grade < ActiveRecord::Base
-  before_destroy :remove_from_search_suggestions
-  after_save :save_to_search_suggestions, :remove_item_references
+  #before_destroy :remove_from_search_suggestions
+  #after_save :save_to_search_suggestions, :remove_item_references
   validates_presence_of :numeric_grade
   validates_uniqueness_of :numeric_grade
   has_many :items

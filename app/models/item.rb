@@ -12,8 +12,8 @@ class Item < ActiveRecord::Base
   before_create :default_values
   after_save :save_name_words
 
-  before_destroy :remove_from_search_suggestions
-  after_save :save_to_search_suggestions
+  #before_destroy :remove_from_search_suggestions
+  #after_save :save_to_search_suggestions
 
   def save_to_search_suggestions
     SearchSuggestion.add_term self.name

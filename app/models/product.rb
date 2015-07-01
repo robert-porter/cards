@@ -3,8 +3,8 @@ class Product < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  before_destroy :remove_from_search_suggestions
-  after_save :save_to_search_suggestions
+  #before_destroy :remove_from_search_suggestions
+  #after_save :save_to_search_suggestions
 
   def save_to_search_suggestions
     SearchSuggestion.add_term self.name

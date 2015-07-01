@@ -4,8 +4,8 @@ class Tag < ActiveRecord::Base
   has_many :taggings, :dependent => :destroy
   has_many :items, through: :taggings
 
-  before_destroy :remove_from_search_suggestions
-  after_save :save_to_search_suggestions
+  #before_destroy :remove_from_search_suggestions
+  #after_save :save_to_search_suggestions
 
   def save_to_search_suggestions
     SearchSuggestion.add_term self.name

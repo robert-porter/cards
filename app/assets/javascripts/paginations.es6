@@ -1,6 +1,5 @@
 $(function() {
 
-
     let loaded = [];
     let url = $('.pagination .next_page').attr('href');
     loaded.push(url.replace(/page=\d/, 'page=1'));

@@ -43,7 +43,6 @@
       None
     <% else %>
         <% @item.tags.each do  |tag| %>
-          <% pp tag.name %>
             <%= link_to tag.name, "/items?q=#{tag.name}" %>
         <% end %>
     <% end %>

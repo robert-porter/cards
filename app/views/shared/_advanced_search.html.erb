@@ -1,15 +1,18 @@
+<div class="container">
+
 <form action="<%= namespace %>/items" id="advanced-search-form">
+  <div class="form-group">
   <h2>Search by</h2>
   <br>
-  <button type="button" onclick="clearAll()">Clear all</button>
+  <button type="button" class="form-control" onclick="clearAll()">Clear all</button>
   <br>
   <br>
-  <select name="all_or_any">
+  <select name="all_or_any" class="form-control">
     <option value="any">Match any values</option>
     <option value="all">Match all values</option>
   </select>
   Sort by:
-  <select name="sort_by">
+  <select name="sort_by" class="form-control">
     <option value="relevance">Relevance</option>
     <option value="newest">Newest</option>
     <option value="oldest">Oldest</option>
@@ -23,7 +26,7 @@
   <br><br>
   <span id="player-name-inputs">
   Player names:
-  <input name="name_words" class="player-name-input"></span>
+  <input name="name_words" class="player-name-input form-control"></span>
   </span>
   <br>
   <br>
@@ -32,7 +35,7 @@
   <span id="team-checkboxes">
   <% @teams.each do |team| %>
     <span class="advanced-search-labeled-checkbox">
-        <input type="checkbox" id="team-checkbox" value ="<%= team.id %>"><%= team.name %>
+        <input type="checkbox" id="team-checkbox" value ="<%= team.id %>" class="form-control"><%= team.name %>
     </span>
   <% end %>
   <input name="teams" id="teams-input" type="hidden">
@@ -133,4 +136,6 @@
   </select><br>
   <br>
   <input type="submit" onclick="advancedSearchFormSubmit()">
+  </div>
 </form>
+</div>

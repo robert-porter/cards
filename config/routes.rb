@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :items
   get 'admin/items/:id/clone' => 'admin/items#clone'
 
+  get 'items/buy/:id' => 'items#buy'
 
   namespace :admin do
     resources :items
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
   get 'admin/home' => 'admin/pages#home'
 
   match '/search_suggestions', to: 'search_suggestions#index', via: :get
+
+  post '/paypal_hook' => 'orders#paypal_hook'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

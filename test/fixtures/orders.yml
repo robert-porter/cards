@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  notification_params: MyText
+  status: MyString
+  purchased_at: 2015-07-05 11:52:19
+  item_id: 1
+  quantity: 1
+
+two:
+  notification_params: MyText
+  status: MyString
+  purchased_at: 2015-07-05 11:52:19
+  item_id: 1
+  quantity: 1

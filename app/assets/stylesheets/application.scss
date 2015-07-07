@@ -18,13 +18,20 @@
 @import "search.scss";
 @import "items.scss";
 @import "pagination.scss";
-
+@import "home.scss";
 
 #content {
     padding: 10px;
     border-style: solid;
     background-color: #eeeeee;
     overflow: auto;
+}
+
+input[type=checkbox].form-control {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: -8px;
 }
 
 

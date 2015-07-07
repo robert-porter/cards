@@ -1,10 +1,23 @@
 
-<li class="item">
-  <a href="<%= item_path(item) %>" style="display: block; height: 120px">
-      <img src="<%= item.image_url(:thumbnail) %>" class="img-thumbnail">
-      <b><%= item.annotated_name %></b>
-      <br>
-      <%= item.description[0..200] << '...' if item.description.size > 200 %>
+<li>
+  <a href="<%= item_path(item) %>">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <b><%= item.annotated_name %></b>
+          </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="panel-item">
+              <img src="<%= item.image_url(:thumbnail) %>">
+            </div>
+            <div class="panel-item">
+            <%= item.description[0..200] << '...' if item.description.size > 200 %>
+            </div>
+        </div>
+      </div>
   </a>
 </li>
+
 

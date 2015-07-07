@@ -1,5 +1,4 @@
 <div class="container">
-
 <form action="<%= namespace %>/items" id="advanced-search-form">
   <div class="form-group">
   <h2>Search by</h2>
@@ -30,56 +29,75 @@
   </span>
   <br>
   <br>
+  <label class="form-control">
   Teams:
+  </label>
   <br>
-  <span id="team-checkboxes">
+  <div id="team-checkboxes" class="container">
   <% @teams.each do |team| %>
-    <span class="advanced-search-labeled-checkbox">
-        <input type="checkbox" id="team-checkbox" value ="<%= team.id %>" class="form-control"><%= team.name %>
-    </span>
+        <label class="col-xs-4">
+          <input type="checkbox" class="form-control" id="team-checkbox" value="<%= team.id %>">
+          <%= team.name %>
+        </label>
   <% end %>
   <input name="teams" id="teams-input" type="hidden">
-  </span>
+  </div>
   <br>
-  Manufacturers:
+    <label class="form-control">
+      Manufacturers:
+    </label>
   <br>
-  <br>
-  <span id="manufacturer-checkboxes">
+  <div id="manufacturer-checkboxes" class="container">
   <% @manufacturers.each do |manufacturer| %>
     <span class="advanced-search-labeled-checkbox">
-        <input type="checkbox" id="manufacturers-checkbox" value ="<%= manufacturer.id %>"><%= manufacturer.name %>
+      <label class="col-xs-4">
+        <input type="checkbox" class="form-control" id="manufacturers-checkbox" value ="<%= manufacturer.id %>">
+        <%= manufacturer.name %>
+      </label>
     </span>
   <% end %>
   <input name="manufacturers" id="manufacturers-input" type="hidden">
-  </span>
+  </div>
   <br>
   <br>
-  Products:
+    <label class="form-control">
+      Products:
+    </label>
   <br>
-  <span id="product-checkboxes">
+  <div id="product-checkboxes" class="container">
   <% @products.each do |product| %>
     <span class="advanced-search-labeled-checkbox">
-        <input type="checkbox" id="products-checkbox" value ="<%= product.id %>"><%= product.name %>
+    <label class="col-xs-4">
+      <input type="checkbox" class="form-control" id="products-checkbox" value ="<%= product.id %>">
+      <%= product.name %>
+    </label>
     </span>
   <% end %>
   <input name="products" id="products-input" type="hidden">
-  </span>
+  </div>
   <br>
   <br>
+  <label class="form-control">
   Tags:
+  </label>
   <br>
-  <span id="tags-checkboxes">
+  <div id="tags-checkboxes" class="container">
   <% @tags.each do |tag| %>
     <span class="advanced-search-labeled-checkbox">
-      <input type="checkbox" id="tags-checkbox" value="<%= tag.id %>"><%= tag.name %>
+      <label class="col-xs-4">
+        <input type="checkbox" class="form-control" id="tags-checkbox" value ="<%= tag.id %>">
+        <%= tag.name %>
+      </label>
     </span>
   <% end %>
   <input name="tags" id="tags-input" type="hidden">
-  </span>
+  </div>
   <br>
   <br>
-  Year
-  <select name="year">
+    <label class="form-control">
+    Year
+    </label>
+  <select name="year" class="form-control">
     <option></option>
     <% @years.each do |year| %>
         <option value="<%= year.to_s %>">
@@ -87,9 +105,11 @@
         </option>
     <% end %>
   </select>
-  </span>
-   or years from:
-  <select name="year_min">
+    <br>
+    <label class="form-control">
+    or years from:
+    </label>
+  <select name="year_min" class="form-control">
     <option></option>
     <% @years.each do |year| %>
         <option value="<%= year.to_s %>">
@@ -97,8 +117,11 @@
         </option>
     <% end %>
   </select>
-  to:
-  <select name="year_max">
+    <br>
+    <label class="form-control">
+    to:
+    </label>
+  <select name="year_max" class="form-control">
     <% @years.each do |year| %>
         <option value="<%= year.to_s %>">
           <%= year.to_s %>
@@ -107,8 +130,10 @@
     <option selected="selected"></option>
   </select>
   <br><br>
+  <label class="form-control">
   Grade:
-  <select>
+  </label>
+  <select class="form-control">
     <option></option>
     <% (1..10).to_a.each do |grade| %>
         <option value="grade">
@@ -116,17 +141,23 @@
         </option>
     <% end %>
   </select>
+    <br>
+  <label class="form-control">
   or grade from:
-  <select>
+  </label>
+  <select class="form-control">
     <option></option>
     <% (1..10).to_a.each do |grade| %>
         <option value="grade">
           <%= grade %>
         </option>
     <% end %>
-  </select>
-  to:
-  <select>
+    </select>
+    <br>
+    <label class="form-control">
+    to:
+    </label>
+  <select class="form-control">
     <% (1..10).to_a.each do |grade| %>
         <option value="grade" selected="selected">
           <%= grade %>
@@ -135,7 +166,7 @@
     <option selected></option>
   </select><br>
   <br>
-  <input type="submit" onclick="advancedSearchFormSubmit()">
+  <input type="submit" class="form-control" onclick="advancedSearchFormSubmit()">
   </div>
 </form>
 </div>

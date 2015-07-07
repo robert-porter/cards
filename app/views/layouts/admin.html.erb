@@ -7,15 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 
-<div id="admin">
-  Logged in as administrator
-  <%= form_tag("/admin/logout", :style => "display:inline") do %>
-      <%= submit_tag "Logout" %>
-  <% end %> |
-  <%= link_to 'Create new item', new_admin_item_path %> |
-  <%= link_to 'Admin home', '/admin/home' %>
-</div>
-
+<% if admin? %>
+    <div id="admin">
+      Logged in as administrator
+      <%= form_tag("/admin/logout", :style => "display:inline") do %>
+          <%= submit_tag "Logout" %>
+      <% end %> |
+      <%= link_to 'Create new item', new_admin_item_path %> |
+      <%= link_to 'Admin home', '/admin/home' %>
+    </div>
+<% end %>
 <%= render 'shared/search' %>
 
 <%= yield %>

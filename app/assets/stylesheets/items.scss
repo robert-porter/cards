@@ -1,34 +1,8 @@
 
 
-
-#items  {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-#items img {
+.panel-item {
   float: left;
-  margin: 0 15px 0 0;
-}
-
-
-.item {
-  height: 110px;
-  display: block;
-  background-color: #eeeeee;
-  border: solid;
-  text-align: left;
-}
-
-
-
-#item :hover {
-  background-color: #730E15;
-}
-
-#item :visited {
-  background-color: yellow;
+  margin: 0 10px;
 }
 
 

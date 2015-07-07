@@ -13,9 +13,10 @@
               <img src="<%= item.image_url(:thumbnail) %>">
             </div>
             <div class="panel-item">
-            <%= item.description[0..200] << '...' if item.description.size > 200 %>
+                <%= item.description[0..200] << '...' if item.description.size > 200 %>
             </div>
         </div>
+
       </div>
   </a>
 </li>

@@ -1,59 +1,76 @@
-<div id="content">
-    <div id="item-show-image">
-      <a href="javascript: window.open('<%= @item.image_url %>', null, 'height=y, width=x, toolbar=0, location=0, status=0, scrollbars=0, resizeable=0')">
-      <%= image_tag @item.image_url(:medium) %>
-      </a>
+
+<div class="container">
+  <div class="panel">
+    <div class="container">
+    <div class="panel-body">
+    <div class="row">
+    <div class="cox-xs-3">
+        <div id="item-show-image">
+          <a href="javascript: window.open('<%= @item.image_url %>', null, 'height=y, width=x, toolbar=0, location=0, status=0, scrollbars=0, resizeable=0')">
+          <%= image_tag @item.image_url(:medium) %>
+          </a>
+        </div>
     </div>
-    <strong>Name:</strong>
-    <%= link_to @item.name, "/items?q=#{@item.name}" %>
-    <br>
-    <strong>Card#:</strong>
-    <% if @item.card_number %>
-      <%= @item.card_number %>
-    <% else %>
-      None
-    <% end %>
-    <br>
-    <strong>Manufacturer:</strong>
-    <%= link_to @item.manufacturer.name, "/items?q=#{@item.manufacturer.name}" %>
-    <br>
-    <strong>Team:</strong>
-    <%= link_to @item.team.name, "/items?q=#{@item.team.name}" %>
-    <br>
-    <strong>Product:</strong>
-    <%= link_to @item.product.name, "/items?q=#{@item.product.name}" %>
-    <br>
-    <strong>Year:</strong>
-    <% if @item.year != nil && @item.year != 0 %>
-        <%= link_to @item.year.to_s, "/items?q=#{@item.year.to_s}" %>
-    <% else %>
-        None
-    <% end %>
-
-    <br>
-    <strong>Grade:</strong>
-    <% if @item.numeric_grade != nil && @item.numeric_grade != 0 %>
-        <%= link_to @item.grade.name, "/items?q=#{@item.grade.name}" %>
-    <% else %>
-        None
-    <% end %>
-    <br>
-    <strong>Tags:</strong>
-    <% if @item.tags.size == 0 %>
-      None
-    <% else %>
-        <% @item.tags.each do  |tag| %>
-            <%= link_to tag.name, "/items?q=#{tag.name}" %>
+    <div class="col-xs-3">
+        <strong>Name:</strong>
+        <%= link_to @item.name, "/items?q=#{@item.name}" %>
+        <br>
+        <strong>Card#:</strong>
+        <% if @item.card_number %>
+          <%= @item.card_number %>
+        <% else %>
+          None
         <% end %>
-    <% end %>
-    <br>
-    <strong>Quantity: </strong><%= @item.quantity.to_s %>
-    <br>
-    <strong>Description:</strong>
-    <%= @item.description %>
+        <br>
+        <strong>Manufacturer:</strong>
+        <%= link_to @item.manufacturer.name, "/items?q=#{@item.manufacturer.name}" %>
+        <br>
+        <strong>Team:</strong>
+        <%= link_to @item.team.name, "/items?q=#{@item.team.name}" %>
+        <br>
+        <strong>Product:</strong>
+        <%= link_to @item.product.name, "/items?q=#{@item.product.name}" %>
+        <br>
+        <strong>Year:</strong>
+        <% if @item.year != nil && @item.year != 0 %>
+            <%= link_to @item.year.to_s, "/items?q=#{@item.year.to_s}" %>
+        <% else %>
+            None
+        <% end %>
 
+        <br>
+        <strong>Grade:</strong>
+        <% if @item.numeric_grade != nil && @item.numeric_grade != 0 %>
+            <%= link_to @item.grade.name, "/items?q=#{@item.grade.name}" %>
+        <% else %>
+            None
+        <% end %>
+        <br>
+        <strong>Tags:</strong>
+        <% if @item.tags.size == 0 %>
+          None
+        <% else %>
+            <% @item.tags.each do  |tag| %>
+                <%= link_to tag.name, "/items?q=#{tag.name}" %>
+            <% end %>
+        <% end %>
+        <br>
+        <strong>Quantity: </strong><%= @item.quantity.to_s %>
+        <br>
+        </div>
 
-  <a href="/items/buy/<%= @item.id %>">
-    <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">
-  </a>
+      <div class="col-xs-3">
+          <a href="/items/buy/<%= @item.id %>">
+            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">
+          </a>
+      </div>
+    </div>
+
+    <div class="row">
+        <strong>Description:</strong>
+        <%= @item.description %>
+    </div>
+  </div>
+  </div>
+  </div>
 </div>

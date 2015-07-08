@@ -7,22 +7,14 @@
   padding: 0;
 }
 
-#items img {
+.panel-item img {
   float: left;
   margin: 0 15px 0 0;
 }
 
-
-
-
-#item :hover {
-  background-color: #730E15;
+.panel-item p {
+  text-align: left;
 }
-
-#item :visited {
-  background-color: yellow;
-}
-
 
 #item-with-admin {
   margin: 10px;
@@ -58,7 +50,6 @@
 
 #item-show-image {
   float: left;
-  margin: 0 15px 0 0;
 }
 
 

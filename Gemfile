@@ -36,6 +36,7 @@ gem 'sprockets-es6', require: 'sprockets/es6'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 gem 'jquery-turbolinks'
 

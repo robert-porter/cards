@@ -8,9 +8,16 @@
 </head>
 <body background="/images/background.jpg">
 
-<%= render 'shared/search' %>
+<div id="wrapper">
+    <%= render 'shared/search' %>
 
-<%= yield %>
+    <div class="main">
+        <%= yield %>
+    </div>
 
+    <div class="footer" align="center">
+        <img src="/images/dadscards.png">
+    </div>
+</div>
 </body>
 </html>

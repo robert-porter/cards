@@ -18,3 +18,5 @@
 
 /config/initializers/ebayr.rb
 /config/secrets.yml
+
+/public/images/uploads/*

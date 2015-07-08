@@ -3,5 +3,6 @@ $('#items').append('<%= j render @items %>');
     $('.pagination').replaceWith('<%= j will_paginate @items %>');
 <% else %>
     $(window).off('scroll');
+    //$('.pagination').html('NO MORE ITEMS');
     $('.pagination').remove();
 <% end %>

@@ -10,10 +10,10 @@
 
         <div class="panel-body">
             <div class="panel-item">
-             
+              
             </div>
             <span class="panel-item" style="color:red;"><p><b>
-                $<%= sprintf('%.2f', item.price_cents / 100) %>
+                $<%= sprintf('%.2f', item.price_cents / 100) if item.price_cents %>
               </b></p>
             </span>
             <span class="panel-item">

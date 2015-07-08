@@ -85,5 +85,8 @@
     <%= f.label :quantity %><br>
     <%= f.text_field :quantity, :style => 'width:40px;' %><br><br>
 
+    <%= f.label 'Price $' %><br>
+    <%= f.text_field :price_cents, :style => 'display:80px;', id: 'price-cents' %><br><br>
+
     <%= f.submit %>
 <% end %>

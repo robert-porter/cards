@@ -7,7 +7,7 @@ class Item < ActiveRecord::Base
   belongs_to :manufacturer
   belongs_to :product
 
-  validates_presence_of :name
+  validates_presence_of :name, :price_cents
 
   before_create :default_values
   after_save :save_name_words

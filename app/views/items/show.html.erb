@@ -60,6 +60,9 @@
         </div>
 
       <div class="col-xs-3">
+        <p style="color:red"><b>
+          $<%= sprintf('%.2f', @item.price_cents / 100) %>
+        </b></p>
           <a href="/items/buy/<%= @item.id %>">
             <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">
           </a>

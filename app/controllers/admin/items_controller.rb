@@ -97,7 +97,8 @@ class Admin::ItemsController < Admin::AdminController
         :grade,
         :price,
         :quantity,
-        :card_number)
+        :card_number,
+        :price_cents)
   end
 end
 

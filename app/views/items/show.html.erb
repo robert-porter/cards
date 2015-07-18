@@ -1,17 +1,16 @@
 
-<div class="container">
-  <div class="panel">
-    <div class="container">
+<div class="item container">
+  <div class="panel panel-default">
     <div class="panel-body">
     <div class="row">
-    <div class="cox-xs-3">
-        <div id="item-show-image">
+      <div class="panel panel-default">
+        <div class="panel-body">
+    <div class="pull-left">
           <a href="javascript: window.open('<%= @item.image_url %>', null, 'height=y, width=x, toolbar=0, location=0, status=0, scrollbars=0, resizeable=0')">
           <%= image_tag @item.image_url(:medium) %>
           </a>
-        </div>
     </div>
-    <div class="col-xs-3">
+    <div class="x">
         <strong>Name:</strong>
         <%= link_to @item.name, "/items?q=#{@item.name}" %>
         <br>
@@ -57,15 +56,35 @@
         <br>
         <strong>Quantity: </strong><%= @item.quantity.to_s %>
         <br>
+          </div>
         </div>
-
-      <div class="col-xs-3">
-        <p style="color:red"><b>
-          $<%= sprintf('%.2f', @item.price_cents / 100) %>
-        </b></p>
-          <a href="/items/buy/<%= @item.id %>">
-            <img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">
-          </a>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="col-xs-6">
+          <form action="/items/buy/<%= @item.id %>">
+           Quantity <input name="quantity" style="display:inline;width:40px" value="1">
+           <b style="color:red">
+              $<%= @item.price %>ea.
+            </b>
+            <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">
+          </form>
+        </div>
+        <div class="col-xs-6 pull-right">
+        <%= form_tag '/shopping_cart/add_line_item', id: 'add-to-cart-form', remote: true do %>
+          <input type="hidden" name="item_id" value="<%= @item.id %>">
+          Quantity <input name="quantity" style="display:inline;width:40px" value="1">
+          <b style="color:red">
+            $<%= @item.price %>ea.
+          </b>
+          <input type="image" name="submit" class="add-to-cart" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif">
+        <% end %>
+        </div>
+          </div>
+          </div>
       </div>
     </div>
 
@@ -73,7 +92,6 @@
         <strong>Description:</strong>
         <%= @item.description %>
     </div>
-  </div>
   </div>
   </div>
 </div>

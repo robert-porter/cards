@@ -1,0 +1,11 @@
+$('.admin-edit').bind('ajax:success', function() {
+
+    var li = $(this).closest('li');
+    var name = li.find('.category-name');
+    name.text("<%= @category.name %>");
+    var synonyms = li.find('.category-synonyms');
+    synonyms.text("<%= @category.synonyms %>");
+
+    li.find('.admin-edit').hide();
+    li.find('.admin-show').show();
+});

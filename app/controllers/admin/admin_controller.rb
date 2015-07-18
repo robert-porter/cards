@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  before_action :check_permissions, except: [:login, :entry]
+  before_action :check_permissions, except: [:login, :home]
   layout 'admin'
 
   def check_permissions

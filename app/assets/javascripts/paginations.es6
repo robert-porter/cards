@@ -1,28 +1,63 @@
 
-$(function() {
-    let loaded = [];
-    let url = $('.pagination .next_page a').attr('href');
 
-    let page_re = /page=(\d+)/
-    let page = page_re.exec(url)[1];
-    loaded.push(+page - 1);
 
-    $(window).scroll(function(){
-        if  ( ($(document).height() - $(window).height()) - $(window).scrollTop() < 300 ){
-            let url = $('.pagination .next_page a').attr('href');
 
-            if(url == null) // page is loading
+
+class Pagination {
+
+    constructor() {
+        this.loaded = [];
+        this.loaded.push(this.nextPageNumber() - 1);
+        $(window).scroll(this.scrollHandler.bind(this));
+    }
+
+    shouldLoadNexPage() {
+       return ($(document).height() - $(window).height()) - $(window).scrollTop() < 300
+    }
+
+    scrollHandler() {
+        if  ( this.shouldLoadNexPage() ){
+            let next = this.nextPageNumber();
+            let url = this.nextPageUrl();
+
+            if(next == null) // page is loading...
                 return;
 
-            let page = page_re.exec(url)[1];
-
-            for(var i = 0; i < loaded.length; i++)
-                if(loaded[i] == page)
+            for(var i = 0; i < this.loaded.length; i++)
+                if(this.loaded[i] == next)
                     return;
 
-            $('.pagination').html('<img src="/images/ajax-loader.gif" alt="Loading..." title="Loading..." />')
-            loaded.push(url);
+            this.showLoading();
+            this.loaded.push(url);
             $.getScript(url);
         }
-    });
-});
+    }
+
+    addPaginationControl(content) {
+        $('.pagination').replaceWith(content);
+    }
+
+    end() {
+        $(window).off('scroll');
+        $('.pagination').remove();
+    }
+
+    showLoading() {
+        $('.pagination').html('<img src="/images/ajax-loader.gif" alt="Loading..." title="Loading..." />');
+    }
+
+    nextPageNumber() {
+        let url = this.nextPageUrl();
+        if(url == null)
+            return null;
+
+        let pageRE = /page=(\d+)/
+        let page = pageRE.exec(url)[1];
+        return page;
+    }
+
+    nextPageUrl()
+    {
+        return $('.pagination .next_page a').attr('href');
+    }
+}

@@ -15,10 +15,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "admin.scss";
-@import "search.scss";
 @import "items.scss";
-@import "pagination.scss";
-@import "home.scss";
 
 $footer-height: 75px;
 
@@ -61,7 +58,6 @@ input[type=checkbox].form-control {
   display: inline-block;
   vertical-align: -8px;
 }
-
 
 
 

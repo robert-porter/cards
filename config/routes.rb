@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :items
   get 'admin/items/:id/clone' => 'admin/items#clone'
 
-  get 'items/buy/:id' => 'items#buy'
+  get 'items/buy/:id' => 'orders#buy'
+
+  get 'orders/checkout' => 'orders#checkout'
 
   namespace :admin do
     resources :items
@@ -29,17 +31,24 @@ Rails.application.routes.draw do
     resources :teams
   end
 
+
+  resources :orders
+  post 'shopping_cart/add_line_item' => 'shopping_carts#add_line_item'
+  post 'shopping_cart/destroy_line_item/:id' => 'shopping_carts#destroy_line_item'
+  get 'shopping_cart/index' => 'shopping_carts#index'
+  get 'shopping_cart/destroy_all_line_items' => 'shopping_carts#destroy_all_line_items'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'admin' => 'admin/sessions#entry'
+  get 'admin' => 'admin/pages#home'
   post 'admin/login' => 'admin/sessions#login'
   post 'admin/logout' => 'admin/sessions#logout'
   get 'admin/home' => 'admin/pages#home'
 
   match '/search_suggestions', to: 'search_suggestions#index', via: :get
 
-  post '/paypal_hook' => 'orders#paypal_hook'
+  post '/pay_pal_hook' => 'orders#pay_pal_hook'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

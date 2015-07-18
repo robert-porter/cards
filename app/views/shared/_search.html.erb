@@ -24,7 +24,7 @@
 
     <form action="/items" class="navbar-form navbar-left" method="get" id="search-form">
       <div class="form-group">
-        <span class="ui-widget">
+        <span>
         <input name="q" id="search-field" class="form-control" placeholder="Search">
         </span>
         <%= submit_tag('Submit', class: 'form-control') %>
@@ -48,15 +48,23 @@
     </form>
     <ul class="nav navbar-nav">
       <li>
-      <a href="#" onclick="$('#advanced-search').fadeToggle()">Advanced Search</a>
-        <div id='advanced-search' class="dropdown-menu pull-right">
-          <%= render 'shared/advanced_search' %>
-        </div>
+      <a href="#" id="show-advanced-search">Advanced Search</a>
+      </li>
+      <li>
+        <a href="#" class="shopping-cart-icon" id="show-shopping-cart">
+          <img src="/images/shopping-cart-icon.png">
+        </a>
       </li>
     </ul>
 
   </div>
 </nav>
 
+<div id='advanced-search' class="dropdown-menu">
+    <%= render 'shared/advanced_search' %>
+</div>
 
+<div id='shopping-cart' class="dropdown-menu">
+  <%= render 'shopping_carts/index' %>
+</div>
 

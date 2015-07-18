@@ -17,7 +17,7 @@
     <%= f.label :image %><br>
     <%= image_tag (@item.image_url(:medium)) %><br>
     <%= f.file_field :image %><br>
-    Url:<%= text_field_tag('item[image_url]', @image_url ) %><br><br>
+    <%= text_field_tag('item[image_url]', @image_url, :style => 'display:none' ) %><br>
 
     <%= f.label :card_number %><br>
     <%= f.text_field :card_number, :style => 'width:80px;'  %><br><br>
@@ -87,6 +87,9 @@
 
     <%= f.label 'Price $' %><br>
     <%= f.text_field :price_cents, :style => 'display:80px;', id: 'price-cents', value: (@item.price_cents / 100) %><br><br>
+
+    <%= f.label 'Shipping Price $' %><br>
+    <%= f.text_field :shipping_price_cents, :style => 'display:80px;', id: 'shipping-price-cents', value: (@item.shipping_price_cents / 100) %><br><br>
 
     <%= f.submit %>
 <% end %>

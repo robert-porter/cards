@@ -5,21 +5,21 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/$PROJECT_DIR$/db/project_production</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/$USER_HOME$/projects/cards/db/project_production</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails cards: test" uuid="e528ed50-ea6f-4012-b80a-a989863eb83c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/$PROJECT_DIR$/db/project_production</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/$USER_HOME$/projects/cards/db/project_production</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails cards: production" uuid="63bfe4d4-3f8d-4499-af57-3415a72e8bc3">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/$PROJECT_DIR$/db/project_production</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/$USER_HOME$/projects/cards/db/project_production</jdbc-url>
       <libraries />
     </data-source>
   </component>

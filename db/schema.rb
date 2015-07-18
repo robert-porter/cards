@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150705165219) do
+ActiveRecord::Schema.define(version: 20150718174216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ebay_return_policies", force: :cascade do |t|
     t.string   "name"
@@ -74,24 +85,34 @@ ActiveRecord::Schema.define(version: 20150705165219) do
     t.string   "name"
     t.text     "description"
     t.string   "image"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "year"
     t.integer  "manufacturer_id"
     t.integer  "team_id"
     t.integer  "product_id"
     t.integer  "views"
     t.integer  "quantity"
-    t.integer  "price_cents"
+    t.integer  "price_cents",          default: 0
     t.integer  "numeric_grade"
     t.string   "card_number"
     t.integer  "grade_id"
+    t.integer  "shipping_price_cents", default: 0
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "shopping_cart_id"
+    t.integer  "quantity"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "manufacturers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "synonyms"
   end
 
   create_table "name_words", force: :cascade do |t|
@@ -100,14 +121,26 @@ ActiveRecord::Schema.define(version: 20150705165219) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_line_items", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.text     "notification_params"
     t.string   "status"
     t.datetime "purchased_at"
-    t.integer  "item_id"
-    t.integer  "quantity"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "transaction_id"
+    t.integer  "address_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.boolean  "processed",           default: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -122,6 +155,12 @@ ActiveRecord::Schema.define(version: 20150705165219) do
     t.decimal  "shipping_service_cost", precision: 16, scale: 2
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.datetime "purchased_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "taggings", force: :cascade do |t|

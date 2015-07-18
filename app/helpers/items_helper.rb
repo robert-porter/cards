@@ -21,6 +21,13 @@ class Search
   attr_accessor :sort_by
 end
 
+
+def remove_out_of_stock_items(items)
+  if true
+    items.where('quantity > ?', 0)
+  end
+end
+
 def param_to_integer(param)
   if param == nil or param == ''
     nil
@@ -96,7 +103,7 @@ def parse_query(params, page, per_page)
   words = query.split
 
   if words.size == 0
-    return order_query(Item.all, search.sort_by).paginate(:page => page, :per_page => per_page )
+    return remove_out_of_stock_items(order_query(Item.all, search.sort_by)).paginate(:page => page, :per_page => per_page )
   end
 
   search.name_words = words
@@ -200,21 +207,25 @@ def search_query(search, operator, page, per_page)
   limit = per_page
   offset = (page - 1) * per_page
 
-  query = 'select id, created_at, year, views, sum(matches) as matches from('
+  query = 'select id, created_at, year, views, quantity, sum(matches) as matches from('
   subquery = (non_join_query(search, operator) +
       name_word_query(search, operator) +
       tag_query(search, operator)).join(' union all ')
 
 
   if subquery == ''
-    return order_query(Item.all, search.sort_by).paginate(:page => page, :per_page => per_page )
+    return remove_out_of_stock_items(order_query(Item.all, search.sort_by)).paginate(:page => page, :per_page => per_page )
   end
 
   query << subquery
-  query <<
-  ')as subquery
-  group by
-  id, created_at, year, views '
+  query << ')as subquery '
+
+  if true
+    query << ' where quantity > 0 '
+  end
+
+  query << ' group by
+  id, created_at, year, views, quantity '
 
   if operator == ' and '
     query <<
@@ -228,7 +239,7 @@ def search_query(search, operator, page, per_page)
   offset.upto([results.num_tuples - 1, offset + limit - 1].min).each do |i|
     ar_results.append Item.find(results[i]['id'].to_i)
   end
-
+  ar_results = ar_results
   paginated_results = WillPaginate::Collection.create(page, 12) do |pager|
     pager.replace(ar_results)
     pager.total_entries = results.num_tuples

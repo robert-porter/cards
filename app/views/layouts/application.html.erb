@@ -11,9 +11,13 @@
 <div id="wrapper">
     <%= render 'shared/search' %>
 
-    <div class="main">
-        <%= yield %>
-    </div>
+  <div class="container" id="flash-messages">
+    <%= flash_messages %>
+  </div>
+
+  <div class="main">
+      <%= yield %>
+  </div>
 
     <div class="footer" align="center">
         <img src="/images/dadscards.png">

@@ -98,7 +98,8 @@ class Admin::ItemsController < Admin::AdminController
         :price,
         :quantity,
         :card_number,
-        :price_cents)
+        :price_cents,
+        :shipping_price_cents)
   end
 end
 

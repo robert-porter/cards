@@ -1,0 +1,21 @@
+<% if @error == true %>
+$('#flash-messages').append('<%= content_tag(:div, 'quantity-error', class: "alert alert-danger fade in") do
+        concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+        concat 'Insufficient quantity in inventory'
+    end %>');
+<% else %>
+    <% if @quantity_added %>
+        shoppingCart.updateQuantity(
+                '#<%= @line_item.id.to_s %>',
+                '<%= @line_item.quantity.to_s %>',
+                '$<%= sprintf("%.2f", @line_item.item.price_cents / 100) %>',
+                '$<%= sprintf("%.2f", @shopping_cart.total_price_cents / 100) %>');
+    <% else %>
+        shoppingCart.addItem(
+                '<%= escape_javascript(render 'line_item', {line_item: @line_item}) %>',
+                '$<%= sprintf("%.2f", @shopping_cart.total_price_cents / 100) %>');
+
+    <% end %>
+
+    shoppingCart.playItemAddedAnimation();
+<% end %>

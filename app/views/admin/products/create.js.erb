@@ -1,8 +1,0 @@
-$("#admin-list").append("<%= escape_javascript(render @product) %>");
-$('#admin-list').find('.admin-edit-link').click(function(c) {
-    c.preventDefault(); // this prevents the original href of the link from being opened
-    c.stopPropagation(); // this prevents the click from triggering click events up the DOM from this element
-    $(this).closest('li').find('.admin-edit').toggle();
-    $(this).closest('li').find('.admin-show').toggle();
-
-});

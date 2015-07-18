@@ -7,10 +7,6 @@ class Admin::SessionsController < Admin::AdminController
     redirect_to admin_home_path
   end
 
-  def entry
-
-  end
-
   def logout
     cookies[:password] = ''
     redirect_to items_path

@@ -1,8 +1,26 @@
 <div id="content">
-  <%= link_to 'Teams', :admin_teams %><br>
-  <%= link_to 'Manufacturers', :admin_manufacturers %><br>
-  <%= link_to 'Products', :admin_products %><br>
-  <%= link_to 'Tags', :admin_tags %><br>
-  <%= link_to 'Grades', :admin_grades %><br>
-  <%= link_to 'Items', :admin_items %><br>
+
+  <% if admin? %>
+      You are currently logged in as an administrator.
+      <%= form_tag("/admin/logout", method: "post") do %>
+          <input type="submit" value="Logout">
+      <% end %>
+
+  <% else %>
+      <%= form_tag("/admin/login", method: "post") do %>
+          <label>Password: </label>
+          <input type = "password" name="password">
+          <input type="submit" value="Admin login">
+      <% end %>
+  <% end %>
+
+  <% if admin? %>
+      <%= link_to 'Teams', :admin_teams %><br>
+      <%= link_to 'Manufacturers', :admin_manufacturers %><br>
+      <%= link_to 'Products', :admin_products %><br>
+      <%= link_to 'Tags', :admin_tags %><br>
+      <%= link_to 'Grades', :admin_grades %><br>
+      <%= link_to 'Items', :admin_items %><br>
+  <% end %>
+
 </div>

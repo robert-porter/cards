@@ -4,7 +4,7 @@
   <div class="form-group">
   <h2>Search by</h2>
   <br>
-  <button type="button" class="form-control" onclick="clearAll()">Clear all</button>
+  <button type="button" class="form-control" onclick="advancedSearch.clearAll()">Clear all</button>
   <br>
   <br>
   <select name="all_or_any" class="form-control">
@@ -82,7 +82,7 @@
   Tags:
   </label>
   <br>
-  <div id="tags-checkboxes" class="container">
+  <div id="tag-checkboxes" class="container">
   <% @tags.each do |tag| %>
     <span class="advanced-search-labeled-checkbox">
       <label class="col-xs-4">
@@ -167,7 +167,7 @@
     <option selected></option>
   </select><br>
   <br>
-  <input type="submit" class="form-control" onclick="advancedSearchFormSubmit()">
+  <input type="submit" class="form-control" onclick="advancedSearch.formSubmit()">
   </div>
 </form>
 </div>

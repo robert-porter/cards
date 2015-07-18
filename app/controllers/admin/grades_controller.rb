@@ -18,8 +18,6 @@ class Admin::GradesController < Admin::AdminController
 
   def update
     @grade = Grade.find(params[:id])
-    pp @grade
-    pp 'HHHHHHHHHHHHHHHHHHHHHHHHHHHHh'
     if @grade.update grade_params
       respond_to do |format|
         format.html { redirect_to grades_path }
@@ -31,6 +29,13 @@ class Admin::GradesController < Admin::AdminController
 
   def destroy
     @grade = Grade.find(params[:id])
+
+    @grade.items.each do |item|
+      item.grade = Grade.none_value
+      item.save
+    end
+
+
     @grade.destroy
     respond_to do |format|
       format.html { redirect_to grades_path }

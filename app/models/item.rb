@@ -12,6 +12,8 @@ class Item < ActiveRecord::Base
   before_create :default_values
   after_save :save_name_words
 
+  monetize :price_cents, :shipping_price_cents
+
   #before_destroy :remove_from_search_suggestions
   #after_save :save_to_search_suggestions
 

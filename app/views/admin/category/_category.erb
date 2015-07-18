@@ -1,0 +1,30 @@
+<li>
+    <div class="admin-show">
+        Name:
+        <span class="category-name">
+        <%= category.name %>
+        </span><br>
+        Synonyms:
+        <span class="category-synonyms">
+        <%= category.synonyms %>
+        </span>
+    </div>
+    <div class="admin-edit" style="display: none">
+        <%= form_for [:admin, category], remote: true do |f| %>
+            <%= f.label :name %><br>
+            <%= f.text_field(:name) %><br>
+            <%= f.label :synonyms %><br>
+            <%= f.text_area :synonyms %><br>
+            <%= f.submit %>
+        <% end %>
+    </div>
+
+    <a href="#" class="admin-edit-link">Edit</a>
+    <%= link_to 'Destroy',
+                 "#{category.class.name.pluralize.downcase}/#{category.id}",
+                 method: :delete,
+                 data: { confirm: 'Are you sure?'},
+                 :remote => true,
+                 :class => 'admin-delete' %>
+  <hr>
+</li>

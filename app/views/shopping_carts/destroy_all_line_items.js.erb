@@ -1,0 +1,4 @@
+$('.destroy-all-line-items').bind('ajax:success', function() {
+    $('.line-item').each(function() { $(this).remove(); });
+    $('#total-price').text('$0.00');
+});

@@ -1,0 +1,20 @@
+
+
+
+<a href="#" id="show-orders-search">Search</a>
+
+<div id='orders-search' class="dropdown-menu">
+  <%= render 'search' %>
+</div>
+
+<% if @show_unprocessed_orders == '1' %>
+    <%= form_tag admin_orders_path, :method => :get do %>
+        <%= hidden_field_tag 'show_unprocessed_orders', '0' %>
+        <%= submit_tag 'Show processed only' %>
+    <% end %>
+<% else %>
+    <%= form_tag admin_orders_path, :method => :get do %>
+        <%= hidden_field_tag 'show_unprocessed_orders', '1' %>
+        <%= submit_tag 'Show all' %>
+    <% end %>
+<% end %>

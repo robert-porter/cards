@@ -1,4 +1,4 @@
 $('.destroy-line-item').bind('ajax:success', function() {
     $(this).closest('.line-item').remove();
-    $('#total-price').text('$<%= sprintf("%.2f", @shopping_cart.total_price_cents / 100) %>');
+    $('#total-price').text('$<%= @shopping_cart.total_price %>');
 });

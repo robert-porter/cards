@@ -8,16 +8,20 @@
 </head>
 
 <% if admin? %>
-    <div id="admin">
-      Logged in as administrator
-      <%= form_tag("/admin/logout", :style => "display:inline") do %>
-          <%= submit_tag "Logout" %>
-      <% end %> |
-      <%= link_to 'Create new item', new_admin_item_path %> |
-      <%= link_to 'Admin home', '/admin/home' %>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          Logged in as administrator
+          <%= form_tag("/admin/logout", :style => "display:inline") do %>
+              <%= submit_tag "Logout" %>
+          <% end %> |
+          <%= link_to 'Create new item', new_admin_item_path %> |
+          <%= link_to 'Admin home', '/admin/home' %>
+        </ul>
+      </div>
+    </nav>
 <% end %>
-<%= render 'shared/search' %>
+
 
 <div id="container">
   <%= flash_messages %>

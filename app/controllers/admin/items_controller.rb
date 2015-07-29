@@ -38,15 +38,17 @@ class Admin::ItemsController < Admin::AdminController
   # POST admin/items
   def create
 
-    @item = Item.new(item_params)
-    @item.tag_list = params[:tag_list] || ''
+    @item = Item.create(item_params)
+    @item.tag_list = params[:tag_list]
     image_url_param =  params.require('item').permit('image_url')
     if image_url_param != nil && image_url_param['image_url'] != ''
       file = File.open(File.join(Rails.root, 'public/', image_url_param['image_url']))
       @item.image = file
     end
+
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      flash_message :notice, 'Item was successfully created.'
+      redirect_to @item
     else
       render :new
     end
@@ -56,8 +58,8 @@ class Admin::ItemsController < Admin::AdminController
   def update
     @item.tag_list = params[:tag_list]
     if @item.update(item_params)
-
-      redirect_to @item, notice: 'Item was successfully updated.'
+      flash_message :notice, 'Item was successfully updated.'
+      redirect_to @item
     else
       render :edit
     end
@@ -67,7 +69,8 @@ class Admin::ItemsController < Admin::AdminController
   def destroy
     @item.destroy
 
-    redirect_to items_url, notice: 'Item was successfully destroyed.'
+    flash_message :notice, 'Item was successfully destroyed.'
+    redirect_to items_url
   end
 
   private
@@ -88,7 +91,6 @@ class Admin::ItemsController < Admin::AdminController
     params.require(:item).permit(
         :name,
         :description,
-        :tag_list,
         :team_id,
         :image,
         :manufacturer_id,
@@ -98,8 +100,8 @@ class Admin::ItemsController < Admin::AdminController
         :price,
         :quantity,
         :card_number,
-        :price_cents,
-        :shipping_price_cents)
+        :price,
+        :shipping_price)
   end
 end
 

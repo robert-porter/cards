@@ -16,8 +16,23 @@ class ApplicationController < ActionController::Base
   end
 
   def set_shopping_cart_session
-    session[:shopping_cart_id] ||= ShoppingCart.create.id
-    @shopping_cart = ShoppingCart.find session[:shopping_cart_id]
+    if session[:shopping_cart_id] == nil
+      @shopping_cart = ShoppingCart.create
+      session[:shopping_cart_id] = @shopping_cart.id
+      return
+    end
+
+    begin
+      @shopping_cart = ShoppingCart.find session[:shopping_cart_id]
+    rescue
+      @shopping_cart = ShoppingCart.create
+      session[:shopping_cart_id] = @shopping_cart.id
+    end
+
+  end
+
+  def shopping_cart
+    @shopping_cart
   end
 
 
@@ -28,6 +43,12 @@ class ApplicationController < ActionController::Base
   def namespace
     return ''
   end
+
+  def flash_message(type, text)
+    flash[type] ||= []
+    flash[type] << text
+  end
+
 
   helper_method :admin?
   helper_method :namespace

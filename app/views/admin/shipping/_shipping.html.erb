@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+      Shipping
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="content">
+    <%= form_tag '/admin/shipping/get_rates/', remote: true do %>
+      <%= hidden_field_tag 'order_id', @order.id, id: 'order-id' %>
+      <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <%= label_tag 'Weight(Ounces)', nil, class: 'form-control' %>
+          <%= text_field_tag 'package_weight', '0', class: 'form-control', id: 'package-weight' %>
+        </div>
+        <div class="col-xs-2">
+          <%= label_tag 'Width(Inches)', nil, class: 'form-control' %>
+          <%= text_field_tag 'package_width', '0', class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%= label_tag 'Length(Inches)', nil, class: 'form-control' %>
+          <%= text_field_tag 'package_length', '0', class: 'form-control' %>
+        </div>
+        <div class="col-xs-2">
+          <%= label_tag 'Height(Inches)', nil, class: 'form-control' %>
+          <%= text_field_tag 'package_height', '0', class: 'form-control' %>
+        </div>
+      </div>
+          <br>
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <%= select_tag 'package_types', options_for_select(Shipping::PACKAGES), {class: 'form-control', id: 'package-type'} %>
+        </div>
+      </div>
+    <% end %>
+    <br>
+    <div id="shipping-price">
+
+    </div>
+    <div id="shipping-rates">
+
+    </div>
+    </div>
+  </div>
+</div>

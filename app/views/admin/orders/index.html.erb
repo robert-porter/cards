@@ -1,0 +1,18 @@
+<%= render 'menu' %>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        Orders / <%= @orders.size %> total
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <% @orders.each do |order| %>
+            <a href="<%= admin_order_path order %>" class="list-group-item">
+              <%= order.purchased_at.strftime("%m/%d/%Y") %>: <%= order.order_line_items.size %> item(s) for $<%= order.total_price %>
+            </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

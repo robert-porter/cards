@@ -1,9 +1,9 @@
 <tr class="line-item" id="<%= line_item.id %>">
   <td class="line-item-quantity"><%= line_item.quantity %></td>
   <td><%= line_item.item.annotated_name %></td>
-  <td>$<%= sprintf("%.2f", line_item.item.price_cents / 100) %></td>
+  <td>$<%= line_item.item.price %></td>
   <td class="line-item-price">
-    $<%= sprintf("%.2f", line_item.quantity * line_item.item.price_cents / 100) %>
+    $<%= line_item.quantity * line_item.item.price %>
   </td>
   <td>
     <%= form_tag "/shopping_cart/destroy_line_item/#{line_item.id}", :method => :post,

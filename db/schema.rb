@@ -11,20 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718174216) do
+ActiveRecord::Schema.define(version: 20150722182159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name"
-    t.string   "street"
+    t.string   "address1"
     t.string   "city"
     t.string   "state"
     t.string   "country"
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "address2"
+    t.string   "telephone"
   end
 
   create_table "ebay_return_policies", force: :cascade do |t|
@@ -133,14 +135,16 @@ ActiveRecord::Schema.define(version: 20150718174216) do
     t.text     "notification_params"
     t.string   "status"
     t.datetime "purchased_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "transaction_id"
     t.integer  "address_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "processed",           default: false
+    t.boolean  "processed",            default: false
+    t.string   "card_type"
+    t.text     "pal_pal_pro_response"
   end
 
   create_table "products", force: :cascade do |t|

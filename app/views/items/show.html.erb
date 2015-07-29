@@ -65,9 +65,10 @@
         <div class="panel panel-default">
         <div class="panel-body">
         <div class="col-xs-6">
-          <form action="/items/buy/<%= @item.id %>">
+          <form action="/purchases/buy_now">
            Quantity <input name="quantity" style="display:inline;width:40px" value="1">
-           <b style="color:red">
+           <input type="hidden" name="item_id" value="<%= @item.id %>">
+            <b style="color:red">
               $<%= @item.price %>ea.
             </b>
             <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif">

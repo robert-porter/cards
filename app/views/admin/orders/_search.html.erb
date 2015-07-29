@@ -1,0 +1,22 @@
+<div class="panel">
+  <div class="container">
+    <form action="admin/orders" id="orders-search-form">
+      <div class="form-group">
+        <h2>Search by</h2>
+        <br>
+        <button type="button" class="form-control" onclick="advancedSearch.clearAll()">Clear all</button>
+        <br>
+        Last name: <input name="last_name" class="last-name-input form-control">
+        First name: <input name="first_name" class="first-name-input form-control">
+        Email: <input name="email" class="email-input form-control">
+        PayPal transaction <input name="pay_pal_transaction" class="pay-pal-transaction-input form-control">
+        Date begin <input name="date_begin" id="date-begin" class="form-control">
+        Date end <input name="date_end" id="date-end" class="form-control">
+        <br>
+        <input type="submit" class="form-control" onclick="advancedSearch.formSubmit()">
+      </div>
+    </form>
+  </div>
+</div>
+
+

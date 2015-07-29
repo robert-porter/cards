@@ -1,6 +1,6 @@
 <tr class="order-line-item" id="<%= line_item.id %>">
   <td class="order-line-item-quantity"><%= line_item.quantity %></td>
-  <td><%= line_item.item.annotated_name %></td>
+  <td><%= link_to line_item.item.annotated_name, line_item.item %></td>
   <td>$<%= line_item.item.price %></td>
   <td class="line-item-price">
     $<%= line_item.quantity * line_item.item.price %>

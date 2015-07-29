@@ -1,30 +1,33 @@
 <li>
-  <div class="admin-show">
-    Name:
-        <span class="tag-name">
-        <%= tag.name %>
-        </span><br>
-    Synonyms:
-        <span class="tag-synonyms">
-        <%= tag.synonyms %>
-        </span>
-  </div>
-  <div class="admin-edit" style="display: none">
-    <%= form_for [:admin, tag], remote: true do |f| %>
-        <%= f.label :name %><br>
-        <%= f.text_field(:name) %><br>
-        <%= f.label :synonyms %><br>
-        <%= f.text_area :synonyms %><br>
-        <%= f.submit %>
-    <% end %>
-  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+        <div class="admin-show">
+        Name:
+            <span class="tag-name">
+            <%= tag.name %>
+            </span><br>
+        Synonyms:
+            <span class="tag-synonyms">
+            <%= tag.synonyms %>
+            </span>
+      </div>
+      <div class="admin-edit" style="display: none">
+        <%= form_for [:admin, tag], remote: true do |f| %>
+            <%= f.label :name %><br>
+            <%= f.text_field(:name) %><br>
+            <%= f.label :synonyms %><br>
+            <%= f.text_area :synonyms %><br>
+            <%= f.submit %>
+        <% end %>
+      </div>
 
-  <a href="#" class="admin-edit-link">Edit</a>
-  <%= link_to 'Destroy',
-              admin_tag_path(tag),
-              method: :delete,
-              data: { confirm: 'Are you sure?'},
-              :remote => true,
-              :class => 'admin-delete' %>
-  <hr>
+      <a href="#" class="admin-edit-link">Edit</a>
+      <%= link_to 'Destroy',
+                  admin_tag_path(tag),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?'},
+                  :remote => true,
+                  :class => 'admin-delete' %>
+    </div>
+  </div>
 </li>

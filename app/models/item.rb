@@ -29,13 +29,51 @@ class Item < ActiveRecord::Base
 
   def annotated_name
     name = ''
-    if self.year != nil && self.year != 0
-      name << self.year.to_s << ' '
+    if self.product.name == 'Single'
+      if self.year != nil && self.year != 0
+        name << self.year.to_s << ' '
+      end
+      if self.manufacturer.name != 'None'
+        name << self.manufacturer.name << ' '
+      end
+      name << self.name
+    elsif self.product.name == 'Team Set'
+      if self.year != nil && self.year != 0
+        name << self.year.to_s << ' '
+      end
+      if self.manufacturer.name != 'None'
+        name << self.manufacturer.name << ' '
+      end
+      if self.team.name != 'None'
+        name << self.team.name << ' '
+      end
+      name << ' team set: '
+      name << self.name
+    elsif self.product.name == 'Set'
+      if self.year != nil && self.year != 0
+        name << self.year.to_s << ' '
+      end
+      if self.manufacturer.name != 'None'
+        name << self.manufacturer.name << ' '
+      end
+      name << ' set: '
+      name << self.name
+    elsif self.product.name == 'Pack' || self.product.name == 'Case' || self.product.name == 'Box'
+      if self.year != nil && self.year != 0
+        name << self.year.to_s << ' '
+      end
+      if self.manufacturer.name != 'None'
+        name << self.manufacturer.name << ' '
+      end
+      name << ' ' << self.product.name.downcase << ' '
+      name << self.name
+      self.name
+    else
+      name << self.name
     end
-    if self.manufacturer.name != 'None'
-      name << self.manufacturer.name << ' '
-    end
-    name << self.name
+
+
+    name
   end
 
   def default_values

@@ -13,23 +13,39 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require jquery.turbolinks
 //= require jquery-ui
 //= require bootstrap-sprockets
 //= require_tree .
 
 
-
 var advancedSearch = null;
 var pagination = null;
 var shoppingCart = null;
+var ordersSearch = null;
+var checkout = null;
+var shippingAddOns = null;
 
 $(function() {
 
     advancedSearch = new AdvancedSearch();
     pagination = new Pagination();
     shoppingCart = new ShoppingCart();
+    ordersSearch = new OrdersSearch();
+    checkout = new Checkout();
 
+    $('#package-type').change(function() {
+        var orderId = $('#order-id').val();
+        var params = {
+            package_weight: $('#package-weight').val(),
+            package_type: $('#package-type').val()
+        }
+        $('#shipping-rates').html('<div align="center"><img src="/images/ajax-loader.gif" alt="Loading..." title="Loading..." /></div>');
+        $.getScript('/admin/shipping/get_rates/' + orderId + '?' + $.param(params));
+    });
 });
 
 /*

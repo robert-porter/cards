@@ -1,0 +1,56 @@
+
+<div class="form-group">
+  <div class="row">
+    <%= label_tag :name, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= text_field_tag :billing_address_name, nil, class: 'form-control'  %>
+    </div>
+  </div>
+  <div class="row">
+    <%= label_tag :address1, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= text_field_tag :billing_address_address1, nil, {class: 'form-control', id: 'billing-address-1'} %>
+    </div>
+    <div class="col-xs-1">
+      <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+      <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+    </div>
+  </div>
+  <div class="row">
+    <%= label_tag :address2, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= text_field_tag :billing_address_address2, nil, class: 'form-control'  %>
+    </div>
+  </div>
+  <div class="row">
+    <%= label_tag :city, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= text_field_tag :billing_address_city, nil, {class: 'form-control', id: 'billing-city'} %>
+    </div>
+    <div class="col-xs-1">
+      <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+      <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+    </div>
+  </div>
+  <div class="row">
+    <%= label_tag :state, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= select_tag :billing_address_state, options_for_select([['','']].concat states),
+                     {class: 'form-control', id: 'billing-state'} %>
+    </div>
+    <div class="col-xs-1">
+      <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+      <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+    </div>
+  </div>
+  <div class="row">
+    <%= label_tag :zip, nil, class: 'control-label col-xs-3 text-right' %>
+    <div class="col-xs-6">
+      <%= text_field_tag :billing_address_zip, nil, {class: 'form-control', id: 'billing-zip'} %>
+    </div>
+    <div class="col-xs-1">
+      <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+      <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+    </div>
+  </div>
+</div>

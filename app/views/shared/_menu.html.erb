@@ -1,0 +1,42 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/vendor/assets/javascripts">
+          <img src="/images/dadscards.png">
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="mailto:#">
+          Contact
+        </a>
+      </li>
+    </ul>
+
+    <%= render 'shared/search' %>
+
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#" class="shopping-cart-icon" id="show-shopping-cart">
+          <img src="/images/shopping-cart-icon.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div id='advanced-search' class="dropdown-menu">
+  <%= render 'shared/advanced_search' %>
+</div>
+
+

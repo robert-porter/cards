@@ -1,15 +1,18 @@
+<%= render 'menu' %>
+
+<%= render 'admin/shipping/shipping' %>
+
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2>Order #<%= @order.id %></h2>
+        Order #<%= @order.id %> -
+        <%= 'Processed' if @order.processed %>
+        <%= 'Not processed' if !@order.processed %>
     </div>
     <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="text-center"><strong>Order summary</strong></h3>
-              </div>
               <div class="panel-body">
                 <div class="table-responsive">
                   <table class="table table-condensed">
@@ -23,12 +26,12 @@
                     </thead>
                     <tbody id="order-line-items">
                     <% @order.order_line_items.each do |line_item|  %>
-                        <%= render '/orders/order_line_item', {line_item: line_item} %>
+                        <%= render 'admin/orders/order_line_item', {line_item: line_item} %>
                     <% end %>
                     <tfoot>
                     <tr>
                       <th colspan="3">Total: </th>
-                      <td id="total-price">$<%= sprintf("%.2f", @order.total_price_cents / 100) %></td>
+                      <td id="total-price">$<%= @order.total_price %></td>
                     </tr>
                     </tfoot>
                   </table>
@@ -62,7 +65,7 @@
                 <div class="panel-heading">Shipping Address</div>
                 <div class="panel-body">
                   <strong><%= @order.address.name %></strong><br>
-                  <%= @order.address.street %><br>
+                  <%= @order.address.address1 %><br>
                   <%= @order.address.city %><br>
                   <%= @order.address.state %><br>
                   <%= @order.address.zip %><br>
@@ -80,29 +83,36 @@
               </div>
             </form>
             <br>
-            </div>
+          </div>
       <div class="row">
         <div class="col-xs-12">
-            <form class="form-inline">
+            <form class="form-inline" action="toggle_processed/<%=@order.id%>">
+              <% if !@order.processed %>
               <input type="submit" class="form-control" value="Set as processed">
+              <% else %>
+              <input type="submit" class="form-control" value="Set as unprocessed">
+              <% end %>
             </form>
           </div>
         </div>
-      <div class="row">
-        <% if @order.prev %>
-            <%= link_to('Previous', order_path(@order.prev)) %>
-        <% else %>
-            Previous
-        <% end %>
-
-        <% if @order.next %>
-            <%= link_to('Next', order_path(@order.next), :class=>"pull-right") %>
-        <% else %>
-            <span class="pull-right">Next</span>
-        <% end %>
-
-
-      </div>
     </div>
   </div>
+  <h3>
+  <div class="row" style="text-align: center">
+    <span class="pull-left">
+    <% if @order.prev %>
+        <%= link_to('Previous', admin_order_path(@order.prev)) %>
+    <% else %>
+        Previous
+    <% end %>
+    </span>
+    <%= link_to 'Orders list', admin_orders_path %>
+
+    <% if @order.next %>
+        <%= link_to('Next', admin_order_path(@order.next), :class=>"pull-right") %>
+    <% else %>
+        <span class="pull-right">Next</span>
+    <% end %>
+  </div>
+  </h3>
 </div>

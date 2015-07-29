@@ -86,10 +86,10 @@
     <%= f.text_field :quantity, :style => 'width:40px;' %><br><br>
 
     <%= f.label 'Price $' %><br>
-    <%= f.text_field :price_cents, :style => 'display:80px;', id: 'price-cents', value: (@item.price_cents / 100) %><br><br>
+    <%= f.text_field :price, :style => 'display:80px;', id: 'price', value: @item.price %><br><br>
 
     <%= f.label 'Shipping Price $' %><br>
-    <%= f.text_field :shipping_price_cents, :style => 'display:80px;', id: 'shipping-price-cents', value: (@item.shipping_price_cents / 100) %><br><br>
+    <%= f.text_field :shipping_price, :style => 'display:80px;', id: 'shipping-price', value: @item.shipping_price %><br><br>
 
     <%= f.submit %>
 <% end %>

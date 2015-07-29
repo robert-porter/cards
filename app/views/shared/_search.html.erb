@@ -1,70 +1,26 @@
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <ul class="nav navbar-nav">
-        <li>
-        <a href="/">
-        <img src="/images/dadscards.png">
-        </a>
-        </li>
-
-      <li>
-        <a href="#">
-          About
-        </a>
-        </li>
-
-        <li>
-        <a href="mailto:#">
-          Contact
-        </a>
-        </li>
-    </ul>
-
-    <form action="/items" class="navbar-form navbar-left" method="get" id="search-form">
-      <div class="form-group">
+<form action="/items" class="navbar-form navbar-left" method="get" id="search-form">
+  <div class="form-group">
         <span>
         <input name="q" id="search-field" class="form-control" placeholder="Search">
         </span>
-        <%= submit_tag('Submit', class: 'form-control') %>
-        <select name="all_or_any" class="form-control">
-          <option value="any">Any words</option>
-          <option value="all">All words</option>
-        </select>
-        Sort by:
-        <select class="form-control" name="sort_by" id="sort_by">
-          <option value="relevance">Relevance</option>
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="most_views">Most viewed</option>
-          <option value="least_views">Least viewed</option>
-          <option value="year_highest_to_lowest">Year(high to low)</option>
-          <option value="year_lowest_to_highest">Year(low to high)</option>
-          <option value="grade_highest_to_lowest">Grade(high to low)</option>
-          <option value="grade_lowest_to_highest">Grade(low to high)</option>
-        </select>
-       </div>
-    </form>
-    <ul class="nav navbar-nav">
-      <li>
-      <a href="#" id="show-advanced-search">Advanced Search</a>
-      </li>
-      <li>
-        <a href="#" class="shopping-cart-icon" id="show-shopping-cart">
-          <img src="/images/shopping-cart-icon.png">
-        </a>
-      </li>
-    </ul>
-
+    <%= submit_tag('Submit', class: 'form-control') %>
+    <select name="all_or_any" class="form-control">
+      <option value="any">Any words</option>
+      <option value="all">All words</option>
+    </select>
+    Sort by:
+    <select class="form-control" name="sort_by" id="sort_by">
+      <option value="relevance">Relevance</option>
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="most_views">Most viewed</option>
+      <option value="least_views">Least viewed</option>
+      <option value="year_highest_to_lowest">Year(high to low)</option>
+      <option value="year_lowest_to_highest">Year(low to high)</option>
+      <option value="grade_highest_to_lowest">Grade(high to low)</option>
+      <option value="grade_lowest_to_highest">Grade(low to high)</option>
+    </select>
+    <a href="#" id="show-advanced-search">Advanced Search</a>
   </div>
-</nav>
-
-<div id='advanced-search' class="dropdown-menu">
-    <%= render 'shared/advanced_search' %>
-</div>
-
-<div id='shopping-cart' class="dropdown-menu">
-  <%= render 'shopping_carts/index' %>
-</div>
+</form>
 

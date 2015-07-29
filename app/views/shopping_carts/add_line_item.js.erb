@@ -8,12 +8,12 @@ $('#flash-messages').append('<%= content_tag(:div, 'quantity-error', class: "ale
         shoppingCart.updateQuantity(
                 '#<%= @line_item.id.to_s %>',
                 '<%= @line_item.quantity.to_s %>',
-                '$<%= sprintf("%.2f", @line_item.item.price_cents / 100) %>',
-                '$<%= sprintf("%.2f", @shopping_cart.total_price_cents / 100) %>');
+                '$<%= @line_item.item.price_cents %>',
+                '$<%= @shopping_cart.total_price %>');
     <% else %>
         shoppingCart.addItem(
                 '<%= escape_javascript(render 'line_item', {line_item: @line_item}) %>',
-                '$<%= sprintf("%.2f", @shopping_cart.total_price_cents / 100) %>');
+                '$<%= @shopping_cart.total_price %>');
 
     <% end %>
 

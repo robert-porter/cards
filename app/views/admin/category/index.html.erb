@@ -1,19 +1,26 @@
-<div id="content">
+<div class="container">
 
 <h1>Listing <%= human_name(self.model).pluralize %></h1>
 
-<ul id="admin-list">
-    <% @categories.each do  |category| %>
+<ul id="admin-list" style="list-style-type: none">
+    <% @categories.each do |category| %>
       <%= render '/admin/category/category', {:category => category} %>
     <% end %>
 </ul>
 
-<h2>Create new team</h2>
-<%= form_for [:admin, @category], remote: true do |f| %>
-    <%= f.label :name %><br>
-    <%= f.text_field(:name) %><br>
-    <%= f.label :synonyms %><br>
-    <%= f.text_area :synonyms %><br>
-    <%= f.submit %>
-<% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Create new <%= human_name(self.model) %>
+    </div>
+    <div class="panel-body">
+      <%= form_for [:admin, @category], remote: true do |f| %>
+          <%= f.label :name %><br>
+          <%= f.text_field(:name) %><br>
+          <%= f.label :synonyms %><br>
+          <%= f.text_area :synonyms %><br>
+          <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
 </div>

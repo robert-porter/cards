@@ -1,26 +1,37 @@
-<div id="content">
+<div class="container">
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% if admin? %>
+          You are currently logged in as an administrator.
+          <%= form_tag("/admin/logout", method: "post") do %>
+              <input type="submit" value="Logout">
+          <% end %>
 
-  <% if admin? %>
-      You are currently logged in as an administrator.
-      <%= form_tag("/admin/logout", method: "post") do %>
-          <input type="submit" value="Logout">
+      <% else %>
+          <%= form_tag("/admin/login", method: "post") do %>
+              <label>Password: </label>
+              <input type = "password" name="password">
+              <input type="submit" value="Admin login">
+          <% end %>
       <% end %>
-
-  <% else %>
-      <%= form_tag("/admin/login", method: "post") do %>
-          <label>Password: </label>
-          <input type = "password" name="password">
-          <input type="submit" value="Admin login">
-      <% end %>
-  <% end %>
-
+    </div>
+  </div>
+</div>
   <% if admin? %>
-      <%= link_to 'Teams', :admin_teams %><br>
-      <%= link_to 'Manufacturers', :admin_manufacturers %><br>
-      <%= link_to 'Products', :admin_products %><br>
-      <%= link_to 'Tags', :admin_tags %><br>
-      <%= link_to 'Grades', :admin_grades %><br>
-      <%= link_to 'Items', :admin_items %><br>
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-body">
+              <%= link_to 'Orders', :admin_orders %><br>
+              <%= link_to 'Items', :admin_items %><br>
+              <%= link_to 'Teams', :admin_teams %><br>
+              <%= link_to 'Manufacturers', :admin_manufacturers %><br>
+              <%= link_to 'Products', :admin_products %><br>
+              <%= link_to 'Tags', :admin_tags %><br>
+              <%= link_to 'Grades', :admin_grades %><br>
+          </div>
+        </div>
+      </div>
   <% end %>
 
 </div>

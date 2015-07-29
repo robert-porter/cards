@@ -1,0 +1,15 @@
+
+<div id="shipping-rates">
+
+    <select name="service_name" class="service-name">
+      <% @rates.each do |rate| %>
+        <option><%= rate.service_name %></option>
+      <% end %>
+    </select>
+
+    <div id="add-ons">
+
+    </div>
+
+    <input type="submit" value="Purchase">
+</div>

@@ -9,7 +9,11 @@
 <body background="/images/background.jpg">
 
 <div id="wrapper">
-    <%= render 'shared/search' %>
+    <%= render 'shared/menu' %>
+
+  <div id='shopping-cart' class="dropdown-menu">
+    <%= render 'shopping_carts/index' %>
+  </div>
 
   <div class="container" id="flash-messages">
     <%= flash_messages %>

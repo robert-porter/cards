@@ -1,8 +1,10 @@
+function checkboxesToHiddenInput(checkboxesContainer, hiddenInput) {
+    var boxes = $(checkboxesContainer).find(":checked");
+    var list = boxes.map(function() {return $(this).val(); }).get().join();;
+    $(hiddenInput).val(list);
+}
+
 function itemFormSubmit()
 {
-    var price = +$('#price-cents').val();
-    $('#price-cents').val(100 * price);
-
-    var shippingPrice = +$('#shipping-price-cents').val();
-    $('#shipping-price-cents').val(100 * shippingPrice);
+    checkboxesToHiddenInput("#item-form-tags-checkboxes", "#tag_list");
 }

@@ -1,0 +1,32 @@
+
+$("#shipping-rates").replaceWith("<%= escape_javascript(render 'rates_form') %>");
+
+
+
+serviceAddOns = {
+<% @rates.each do |rate| %>
+   "<%= rate.service_name %>": {
+    totalPrice: <%= rate.total_price %>,
+    addOns: {
+    <% rate.add_ons.each do |key, value| %>
+       "<%= key %>": {
+           amount: "<%= value[:amount] %>",
+           friendlyName: "<%= ActiveShipping::Stamps::ADD_ONS[key] %>",
+           prohibitedWith: [
+               <% if value[:prohibited_with] != nil %>
+                   <% value[:prohibited_with].each do |prohibited| %>
+                        '<%= prohibited %>',
+                   <% end %>
+               <% end %>
+           ]
+       },
+    <% end %>
+    }
+   },
+<% end %>
+}
+
+
+shippingAddOns = new ShippingAddOns(serviceAddOns);
+
+

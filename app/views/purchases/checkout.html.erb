@@ -1,0 +1,291 @@
+
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            Order summary
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+                <tr>
+                  <th>Quantity</th>
+                  <th>Item</th>
+                  <th>Unit price</th>
+                  <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="line-items">
+                <% @shopping_cart.line_items.each do |line_item| %>
+                    <tr class="line-item" id="<%= line_item.id %>">
+                      <td class="line-item-quantity"><%= line_item.quantity %></td>
+                      <td><%= line_item.item.annotated_name %></td>
+                      <td>$<%= line_item.item.price %></td>
+                      <td class="line-item-price">
+                        $<%= line_item.quantity * line_item.item.price %>
+                      </td>
+                    </tr>
+                <% end %>
+                <tr>
+                  <td></td><td>Shipping</td><td></td><td>$<%= ShippingPriceCalculator.calculate_shopping_cart_shipping_price @shopping_cart %></td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th colspan="3">Total: </th>
+              <td id="total-price">$<%= @shopping_cart.total_price + ShippingPriceCalculator.calculate_shopping_cart_shipping_price(@shopping_cart) %></td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      <%= form_for @purchase do |f| %>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title" onclick="$('#contact-body').fadeToggle()">
+                <span class="glyphicon glyphicon-collapse-down"></span>
+                Contact information
+                <div class="pull-right">
+                  <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                  <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body" id="contact-body" style="display: none">
+              <div class="form-group">
+                <div class="row row-centered">
+                  <%= f.label :email, nil, class: 'control-label col-xs-offset-3 col-xs-6' %>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6 col-xs-offset-3">
+                    <%= f.text_field :contact_email, { class: 'form-control', id: 'email' } %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <%= label_tag :phone, nil, class: 'control-label col-xs-offset-3 col-xs-6' %>
+              </div>
+              <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                  <%= f.text_field :contact_phone, class: 'form-control'  %>
+                </div>
+                <div class="col-xs-1">
+                  <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                  <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title" onclick="$('#address-body').fadeToggle()">
+                <span class="glyphicon glyphicon-collapse-down"></span>
+                Shipping information
+                <div class="pull-right">
+                  <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                  <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body" id="address-body" style="display: none">
+              <div class="form-group">
+                <div class="row">
+                  <%= label_tag :name, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :shipping_address_name, class: 'form-control'  %>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :address1, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :shipping_address_address1, {class: 'form-control', id: 'shipping-address-1'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :address2, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :shipping_address_address2, class: 'form-control'  %>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :city, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :shipping_address_city, {class: 'form-control', id: 'shipping-city'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :state, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.select :shipping_address_state,
+                                 options_for_select(([['','']].concat states), @purchase.shipping_address_state), {},
+                                 {class: 'form-control', id: 'shipping-state', } %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :zip, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :shipping_address_zip, {class: 'form-control', id: 'shipping-zip'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- Billing -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title" onclick="$('#billing-body').fadeToggle()">
+                <span class="glyphicon glyphicon-collapse-down"></span>
+                Billing information
+                <div class="pull-right">
+                  <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                  <span class="glyphicon glyphicon-ok" style="color: green; display: none"></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body" id="billing-body" style="display: none">
+              <div class="form-group">
+
+                <div class="row">
+                  <%= label_tag :first_name, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :card_first_name, {class: 'form-control', id: 'card-first-name'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :last_name, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :card_last_name, {class: 'form-control', id: 'card-last-name'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :card_type, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.select :card_type,
+                                   options_for_select(
+                                           [[],
+                                            ["Visa", "visa"],
+                                            ["MasterCard", "master"],
+                                            ["Discover", "discover"],
+                                            ["American Express", "american_express"]]), {},
+                                   {class: 'form-control', id: 'card-type'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :card_number, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :card_number, {class: 'form-control', id: 'card-number'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :card_verification, "Card Verification Value (CVV)", class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.text_field :card_verification, {class: 'form-control', id: 'card-verification'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :expiration_month, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.select :card_expiration_month,
+                                 options_for_select(((1..12).each {|i| [[i.to_s], [i.to_s]] }).to_a), {},
+                                   {class: 'form-control', id: 'card-expiration-month'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= label_tag :expiration_year, nil, class: 'control-label col-xs-3 text-right' %>
+                  <div class="col-xs-6">
+                    <%= f.select :card_expiration_year,
+                                 options_for_select([['','']].concat (Date.today.year..(Date.today.year+10)).to_a), {},
+                                   {class: 'form-control', id: 'card-expiration-year'} %>
+                  </div>
+                  <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-asterisk" style="color: red"></span>
+                    <span class="glyphicon glyphicon-ok" style="color: green; display:none"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6 col-xs-offset-3">
+                    <div class="input-group">
+                <span class="input-group-addon">
+                  <%= check_box_tag :use_shipping_address_as_billing_address,
+                                    true, true,
+                                    {:class=> 'form-control',
+                                     :onchange =>
+                                             '$("#billing-address").fadeToggle();'} %>
+                </span>
+                <span class="input-group-addon">
+                  <div class="pull-left">
+                    <label>Use shipping address as billing address.</label>
+                  </div>
+                </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="billing-address" style="display: none">
+                  <%= render 'billing_address' %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= f.submit "Purchase" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
